@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nicola Rapacchiani - Data Scientist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Nicola Rapacchiani</h1>
+            <p>Data Analyst | Data Scientist | Machine Learning Enthusiast</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                I am a Data Analyst/Scientist with expertise in Python, SQL, AWS, Azure, TensorFlow, and PyTorch. 
+                I specialize in building data-driven solutions and machine learning models to extract actionable insights.
+            </p>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+
+            <div class="project">
+                <h3>Football Game Analysis Using YOLO Models</h3>
+                <p>
+                    Implemented two YOLO models to detect and track players and the ball in football match footage, extracting metrics 
+                    such as player movement, pass detection, and distance covered. The project provided valuable insights into 
+                    player performance and team strategy.
+                </p>
+                <p><strong>Technologies:</strong> Python, YOLO, OpenCV, TensorFlow, Pandas</p>
+                <a href="https://github.com/yourusername/football-yolo-analysis" class="button">View on GitHub</a>
+            </div>
+
+            <div class="project">
+                <h3>Customer Churn Prediction Model</h3>
+                <p>
+                    Developed a machine learning model to predict customer churn for a telecom company, achieving 87% accuracy. 
+                    The model helped the company target high-risk customers with retention strategies, reducing churn rate by 15%.
+                </p>
+                <p><strong>Technologies:</strong> Python, Pandas, Scikit-learn, TensorFlow</p>
+                <a href="https://github.com/yourusername/customer-churn" class="button">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact</h2>
+            <p>Email: yourname@example.com</p>
+            <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/yourusername">linkedin.com/in/yourusername</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name</p>
+        </div>
+    </footer>
+</body>
+</html>

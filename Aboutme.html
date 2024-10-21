@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
+    <title>About Me</title>
+    <style>
+    /* Global Styling */
+* {
+    box-sizing: border-box; /* Ensures padding and border are included in width calculations */
+}
+
+body {
+    font-family: "Agdasima", sans-serif;
+    background: url('galaxy1.jpg') no-repeat center center/cover;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+/* Home icon styling */
+.home-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.home-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Container */
+.about-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0);
+    margin-top: 50px;
+}
+
+/* Profile Section */
+.profile-section {
+    text-align: center; /* This centers the content inside the section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile-item{
+    background-color: #f9f9f9;  
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%; /* Ensure skill-item container takes the full width available */
+    text-align: left; /* Aligns the text to the left */
+}
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex; /* Ensure the image is treated as a block element */
+    justify-content: center;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    font-size: 20px;
+    color: #0c0c0c;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Skills Section */
+.skills-section {
+    width: 100%; /* Matches the width of the experience section */
+    margin-top: 40px;
+}
+
+.skill-item {
+    background-color: #f9f9f9;  
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%; /* Ensure skill-item container takes the full width available */
+    text-align: left; /* Aligns the text to the left */
+}
+
+.skills-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.skills-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    margin-left: 0;
+}
+
+.skills-section ul li {
+    margin-bottom: 10px;
+}
+
+/* Experience Section */
+.experience-section {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.experience-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.experience-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Qualifications Section */
+.qualifications-section {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.qualifications-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.qualifications-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Social Media Section */
+.social-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.social-icons i {
+    font-size: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 15px;
+    }
+
+    .skills-section {
+        margin-top: 30px;
+    }
+
+    .skills-section ul {
+        margin-left: 10px;
+    }
+
+    .experience-section h2, .qualifications-section h2 {
+        font-size: 22px;
+    }
+
+    .skills-section ul li {
+        font-size: 12px;
+    }
+
+    .skill-item {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-icon">&#8962;</a>
+
+    <!-- About Me Section -->
+    <div class="about-container">
+        <!-- Profile Info -->
+        <div class="profile-section">
+            <div class="profile-pic">
+                <img src="profpict.jpg" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h1>Nicola Rapacchiani</h1>
+                <div class="profile-item">
+                <p>Data Analyst/Scientist with a strong foundation in Python, SQL, and machine learning, specializing in transforming complex data into actionable insights. Proficient in data visualization using Tableau and Power BI. Experienced in automating data processes to increase efficiency. Passionate about leveraging data to solve real-world problems in finance, marketing, and sports. Eager to contribute to innovative teams and drive data-driven decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <h2>Skills</h2>
+            <section class="skill-item">
+            <ul>
+                <li><strong>Programming Languages:</strong> Python (Advanced), SQL (Advanced)</li>
+                <li><strong>Data Analysis Tools:</strong> Excel (Advanced), Power BI (Intermediate), Tableau (Intermediate)</li>
+                <li><strong>Soft Skills:</strong> Teamwork, Problem-Solving</li>
+                <li><strong>Data Engineering:</strong> Azure (Intermediate), Data Manipulation (Advanced)</li>
+                <li><strong>Machine Learning:</strong> TensorFlow (Basic), PyTorch (Basic)</li>
+                <li><strong>Libraries:</strong> Pandas, NumPy, Scikit-learn (Advanced)</li>
+            </ul>
+            </section>
+        </section>
+
+        <!-- Experience Section -->
+        <div class="experience-section">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Data Analyst | TELUS International</h3>
+                <p>DEC 2022 – MAY 2024</p>
+                <p>• Analysed large-scale customer behaviour datasets using Python and Excel, identifying key trends that contributed to a 15% increase in customer retention.</p>
+                <p>• Developed and automated data validation scripts, reducing manual processing time by 20% and increasing accuracy by eliminating common data errors.</p>
+                <p>• Designed and implemented interactive dashboards in Power BI, providing the marketing team with actionable insights into sales trends, leading to a 10% improvement in campaign effectiveness.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Data Engineer (Internship) | DataArt</h3>
+                <p>JAN 2023 – APR 2023</p>
+                <p>• Developed scalable data pipelines on AWS and Azure, automating ETL processes to enhance data processing.</p>
+                <p>• Optimized and maintained data storage solutions, improving data retrieval speeds for large-scale datasets.</p>
+                <p>• Automated data workflows using Python and CI/CD pipelines, reducing manual tasks and ensuring high data integrity for analysis and reporting.</p>
+            </div>
+        </div>
+
+        <!-- Qualifications Section -->
+        <div class="qualifications-section">
+            <h2>Education & Certifications</h2>
+            <div class="qualifications-item">
+                <h3>BSc Data Science and Artificial Intelligence | University of East London</h3>
+                <p>SEP 2021 – MAY 2024 | First Class</p>
+                <p>• Relevant Modules: Data Structure and Algorithm, Programming for Data Science, Cloud Computing, Artificial Intelligence.</p>
+                <p>• Key Projects: Flight crash prediction, Football Entity Detection using AI Yolo Models.</p>
+            </div>
+
+            <div class="qualifications-item">
+                <h3>Google Professional Data Engineer Certificate</h3>
+                <p>MAY 2024 – JUN 2024</p>
+                <p>Designed and implemented scalable data processing systems, managing ingestion, storage, and processing of large datasets using advanced ETL practices and cloud platforms like AWS and Azure.</p>
+            </div>
+            <div class="qualifications-item">
+                <h3>Website Developer - BIT ONLINE</h3>
+                <p>JAN 2018 – JAN 2019</p>
+                <p>Relevant Modules: HTML, CSS, PHP, and JavaScript. Use of WordPress, Mailchimp, Google ADS, Google Analytics.
+                    Digital Marketing and e-mail campaign strategy.</p>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h2>Connect with Me</h2>
+            <div class="social-icons">
+                <a href="https://github.com/Nikrapa"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nicola-rapacchiani/"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

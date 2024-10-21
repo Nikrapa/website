@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
+    <title>Projects</title>
+    <style>
+        body {
+            font-family: "Agdasima", sans-serif;
+            background: url('galaxy1.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Home icon styling */
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 60px auto 0; /* Added margin-top to avoid overlapping with the icon */
+        }
+        .project-title {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            text-decoration: none; /* Ensure no underline */
+            color: inherit; /* Inherit text color */
+            display: flex;
+            flex-direction: column; /* Ensure content fills the card */
+            height: 100%; /* Ensure the card takes full height */
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 15px;
+            flex-grow: 1; /* Ensures the content expands to fill available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .project-card a, .project-card a:hover, .project-card a:focus, .project-card a:visited {
+            text-decoration: none;
+            color: inherit; /* Ensure link color stays the same */
+        }
+
+        .project-content h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            font-size: 20px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .project-content .date {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: auto; /* Pushes the date to the bottom */
+        }
+        
+
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Home icon linking back to the index page -->
+    <a href="index.html" class="home-icon">&#8962;</a> <!-- Unicode character for a house symbol -->
+
+    <div class="project-title">
+        <h1>Projects</h1>
+
+    <div class="projects-container">
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb" target="_blank" class="project-card">
+            <img src="flightprediction.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>Airflight delay prediction</h3>
+                <p>The Air Flight Status Analysis and Prediction project is focused on understanding and predicting the status of air flights using historical data.
+                The project utilizes PySpark, a big data processing framework, to handle large datasets efficiently. 
+                The primary goal of this project is to analyze flight data and build predictive models that can determine various outcomes, such as flight delays, cancellations, and other status-related metrics.</p>
+                <p class="date">January 17, 2024</p>
+            </div>
+        </a>
+
+        <!-- Project Card 2 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Cardovascular%20Analysis/Cardovascular_diseases_analysis.ipynb" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="car.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>Car Evaluation Analysis</h3>
+                <p> Decision Tree Algorithm to predict the acceptability of a car based on its attributes such as price, maintenance cost, number of doors, luggage boot size, and safety rating.
+                    I will be using the Car Evaluation Dataset obtained from UCI Machine Learning Repository. Visualization of the correlation matrix between the features in the car evaluation dataset and Prepruning and Decision Tree Implementation
+                </p>
+                <p class="date">August 26, 2023</p>
+            </div>
+        </div>
+        </a>
+
+        <!-- Project Card 3 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/tree/main/Cardovascular%20Analysis" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="cardio.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>Cardiovascular Diseases Analysis</h3>
+                <p>This project centres around the analysis and prediction of heart disease using the Heart Attack Dataset, which comprises a comprehensive collection of health attributes from over 900 patients.
+                   The goal is to explore and analyze these data points to uncover patterns that can predict cardiovascular risks and assist in making informed medical decisions</p>
+                <p class="date">July 01, 2023</p>
+            </div>
+        </div>
+        </a>
+
+        <!-- Project Card 4 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="yolo.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>Football Analysis with Deep Learning</h3>
+                <p>The project aim is to detect entities in a football game using advanced deep learning techniques, to track the entites detected in real-time and represent them in a two dimensional map, and finally extract row data for further analysis.</p>
+                <p class="date">June 12, 2023</p>
+            </div>
+        </div>
+        </a>
+
+        <!-- Project Card 5 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/NLTK%20for%20Sentiment%20Analysis/NLTK_Sentiment_Analysis.ipynb" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="nlp.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>NLTK for Sentiment Analysis</h3>
+                <p>Natural Language Processing Python Project creating a Sentiment Analysis classifier with NLTK's VADER and Huggingface Roberta Transformers.
+                The project is to classify the seniment of amazon customer reviews.</p>
+                <p class="date">May 15, 2023</p>
+            </div>
+        </div>
+        </a>
+
+        <!-- Project Card 6 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="finance.jpg" alt="Project Image">
+            <div class="project-content">
+                <h3>Credit Risk Analysis</h3>
+                <p>This is a classification project that aims for predicting credit risk or in simpler terms will help the companies to predict bad loans. Predicting the credibility of a loan is very useful in the Banking business. 
+                   Using machine learning will help to decide, whether to approve a loan or not by accounting for the risk value based on historical data.</p>
+                <p class="date">April 28, 2023</p>
+            </div>
+        </div>
+        </a>
+
+        <!-- Project Card 7 -->
+        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb" target="_blank" class="project-card">
+        <div class="project-card">
+            <img src="netflix.jpg" alt="Project Image">
+                    <div class="project-content">
+                        <h3>GPT-2 to Generate Netflix Description</h3>
+                        <p>This model is based on the GPT-2 language model architecture, which is designed to generate coherent and contextually relevant text. The model takes in a sequence of text (in this case, a Netflix show description) and tries to predict the next words in the sequence.</p>
+                        <p class="date">Aug 18, 202</p>
+                    </div>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
