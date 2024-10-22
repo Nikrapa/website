@@ -19,6 +19,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 /* Home icon styling */
 .home-icon {
     position: absolute;
@@ -34,6 +35,24 @@ body {
 }
 
 .home-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* CV download link styling */
+.cv-download {
+    position: absolute;
+    top: 30px; /* Adjust the position to be below the home icon */
+    right: 20px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cv-download:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -233,6 +252,8 @@ body {
 </head>
 <body>
     <a href="index.html" class="home-icon">&#8962;</a>
+    <!-- CV Download Link -->
+    <a href="CV Update Set 2024.pdf" class="cv-download" download>Download CV</a>
 
     <!-- About Me Section -->
     <div class="about-container">
@@ -302,8 +323,7 @@ body {
             <div class="qualifications-item">
                 <h3>Website Developer - BIT ONLINE</h3>
                 <p>JAN 2018 – JAN 2019</p>
-                <p>Relevant Modules: HTML, CSS, PHP, and JavaScript. Use of WordPress, Mailchimp, Google ADS, Google Analytics.
-                    Digital Marketing and e-mail campaign strategy.</p>
+                <p>Relevant Modules: HTML, CSS, PHP, and JavaScript. Use of WordPress, Mailchimp, Google ADS, Google Analytics. Digital Marketing and e-mail campaign strategy.</p>
             </div>
         </div>
 
