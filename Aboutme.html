@@ -66,7 +66,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0);
     margin-top: 50px;
@@ -106,8 +106,8 @@ body {
 }
 
 .profile-info h1 {
-    font-size: 28px;
-    color: #333;
+    font-size: 30px;
+    color: #fdfdfd;
     margin-bottom: 10px;
 }
 
@@ -156,7 +156,7 @@ body {
 
 /* Experience Section */
 .experience-section {
-    margin-top: 40px;
+    margin-top: 20px;
     width: 100%;
 }
 
@@ -171,21 +171,21 @@ body {
 }
 
 .experience-section h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 30px;
+    color: #ffffff;
     margin-bottom: 20px;
     text-align: center;
 }
 
 /* Qualifications Section */
 .qualifications-section {
-    margin-top: 40px;
+    margin-top: 10px;
     width: 100%;
 }
 
 .qualifications-section h2 {
-    font-size: 24px;
-    color: #333;
+    font-size: 30px;
+    color: #ffffff;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -203,6 +203,7 @@ body {
 .social-section {
     margin-top: 40px;
     text-align: center;
+    color: #ffffff;
 }
 
 .social-icons {
@@ -213,7 +214,7 @@ body {
 .social-icons a {
     margin: 0 10px;
     text-decoration: none;
-    color: #007BFF;
+    color: #ffffff;
 }
 
 .social-icons i {
@@ -253,7 +254,7 @@ body {
 <body>
     <a href="index.html" class="home-icon">&#8962;</a>
     <!-- CV Download Link -->
-    <a href="CV Update Set 2024.pdf" class="cv-download" download>Download CV</a>
+    <a href="file:///C:/Users/nicho/Desktop/Personal%20Website/Rapacchiani%20Nicola%20CV%20.pdf" class="cv-download" download>Download CV</a>
 
     <!-- About Me Section -->
     <div class="about-container">
@@ -263,27 +264,19 @@ body {
                 <img src="profpict.jpg" alt="Profile Picture">
             </div>
             <div class="profile-info">
-                <h1>Nicola Rapacchiani</h1>
+                <h1>About Me</h1>
                 <div class="profile-item">
-                <p>Data Analyst/Scientist with a strong foundation in Python, SQL, and machine learning, specializing in transforming complex data into actionable insights. Proficient in data visualization using Tableau and Power BI. Experienced in automating data processes to increase efficiency. Passionate about leveraging data to solve real-world problems in finance, marketing, and sports. Eager to contribute to innovative teams and drive data-driven decisions.</p>
+                <p>Data Analyst/Scientist with a strong foundation in Python and SQL, specializing in transforming complex data
+                    into actionable insights. Proficient in data visualization using Power BI and Python libraries. Experienced in
+                    automating data processes to increase efficiency and in implementing machine learning models (including
+                    Scikit-Learn, TensorFlow, and PyTorch) to uncover deeper patterns and insights. Passionate about leveraging
+                    data to solve real-world problems in finance, marketing, and sports. Eager to contribute to innovative teams
+                    and drive data-driven decisions. 
+                </p>
                 </div>
             </div>
         </div>
 
-        <!-- Skills Section -->
-        <section class="skills-section">
-            <h2>Skills</h2>
-            <section class="skill-item">
-            <ul>
-                <li><strong>Programming Languages:</strong> Python (Advanced), SQL (Advanced)</li>
-                <li><strong>Data Analysis Tools:</strong> Excel (Advanced), Power BI (Intermediate), Tableau (Intermediate)</li>
-                <li><strong>Soft Skills:</strong> Teamwork, Problem-Solving</li>
-                <li><strong>Data Engineering:</strong> Azure (Intermediate), Data Manipulation (Advanced)</li>
-                <li><strong>Machine Learning:</strong> TensorFlow (Basic), PyTorch (Basic)</li>
-                <li><strong>Libraries:</strong> Pandas, NumPy, Scikit-learn (Advanced)</li>
-            </ul>
-            </section>
-        </section>
 
         <!-- Experience Section -->
         <div class="experience-section">
@@ -291,17 +284,27 @@ body {
             <div class="experience-item">
                 <h3>Data Analyst | TELUS International</h3>
                 <p>DEC 2022 – MAY 2024</p>
-                <p>• Analysed large-scale customer behaviour datasets using Python and Excel, identifying key trends that contributed to a 15% increase in customer retention.</p>
-                <p>• Developed and automated data validation scripts, reducing manual processing time by 20% and increasing accuracy by eliminating common data errors.</p>
-                <p>• Designed and implemented interactive dashboards in Power BI, providing the marketing team with actionable insights into sales trends, leading to a 10% improvement in campaign effectiveness.</p>
+                <p>• Conducted in-depth analysis of customer datasets using Python (pandas and NumPy libraries) and
+                    MS Excel. Identified the pattern in the rates, frequently purchased items and peak engagement
+                    times. This analysis contributed to a campaign that resulted in 15% increase in customer retention
+                    in one year.</p>
+                <p>• Developed scripts in Python on Google Colab or Jupyter Notebook to automate the data validation
+                    process. This involved checking for missing values, inconsistent formats and duplicates across
+                    tables. This automation reduces drastically the validation time and enabled a faster access to clean
+                    data.</p>
+                <p>• Built Power BI dashboards and reports for the marketing team, integrating data from SQL Server or
+                    CSV files. Set up interactive visuals to track weekly updates in product category sales and customer
+                    demographic. </p>
             </div>
 
             <div class="experience-item">
                 <h3>Data Engineer (Internship) | DataArt</h3>
                 <p>JAN 2023 – APR 2023</p>
-                <p>• Developed scalable data pipelines on AWS and Azure, automating ETL processes to enhance data processing.</p>
-                <p>• Optimized and maintained data storage solutions, improving data retrieval speeds for large-scale datasets.</p>
-                <p>• Automated data workflows using Python and CI/CD pipelines, reducing manual tasks and ensuring high data integrity for analysis and reporting.</p>
+                <p>• Developed and maintained automated data pipelines using Microsoft Azure Data Factory,
+                    streamlining the transfer of large datasets (up to 10GB per batch) from Azure Blob Storage (CSV
+                    format) to a cloud-based SQL Server</p>
+                <p>• Improved data transfer efficiency by approximately 10%, significantly reducing the process time for
+                    data ingestion. </p>
             </div>
         </div>
 
@@ -311,14 +314,24 @@ body {
             <div class="qualifications-item">
                 <h3>BSc Data Science and Artificial Intelligence | University of East London</h3>
                 <p>SEP 2021 – MAY 2024 | First Class</p>
-                <p>• Relevant Modules: Data Structure and Algorithm, Programming for Data Science, Cloud Computing, Artificial Intelligence.</p>
-                <p>• Key Projects: Flight crash prediction, Football Entity Detection using AI Yolo Models.</p>
+                <p>• Relevant Modules:
+                    Data Structure and Algorithm, Programming for Data Science, Database System, Cloud Computing, Artificial
+                    Intelligence, Advanced Topic in AI, Big Data, Power BI and Excel. </p>
+                <p>Main Key Projects:</p>
+                 <p>• Predictive Analytics Project: Developed a predictive AI model using Python to forecast flight crashes
+                    and departure delayed.</p>
+                 <p>• Database Management: Designed and implemented a relational database system for an existing
+                    renting car company using MySQL (Cloud).</p>
+                 <p>• Dissertation Project: Football Entity Detection and Tracking using Artificial Intelligence system like
+                    Yolo Models and further match analysis performances using Python. </p>
             </div>
 
             <div class="qualifications-item">
                 <h3>Google Professional Data Engineer Certificate</h3>
                 <p>MAY 2024 – JUN 2024</p>
-                <p>Designed and implemented scalable data processing systems, managing ingestion, storage, and processing of large datasets using advanced ETL practices and cloud platforms like AWS and Azure.</p>
+                <p>Designed and implemented scalable data processing systems, managing ingestion, storage, and processing
+                    of large datasets using ETL practices on Microsoft Azure. Automated and maintained data workloads,
+                    ensuring data operations and enabling continuous integration and deployment pipelines</p>
             </div>
             <div class="qualifications-item">
                 <h3>Website Developer - BIT ONLINE</h3>
