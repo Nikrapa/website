@@ -3,245 +3,603 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projects – Nicola Rapacchiani. Machine Learning, NLP, Computer Vision and Sports Analytics projects.">
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
-    <title>Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Projects – Nicola Rapacchiani</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: "Agdasima", sans-serif;
-            background: url('galaxy1.jpg') no-repeat center center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin: 0;
-            padding: 20px;
-            position: relative;
+            background: url('galaxy1.jpg') no-repeat center center/cover fixed;
+            min-height: 100vh;
+            color: #333;
         }
 
-        /* Home icon styling */
-        .home-icon {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 20px;
+        /* ── Nav ── */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            z-index: 200;
+        }
+
+        nav .logo h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            font-size: 30px;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
             color: white;
             text-decoration: none;
-            border: 2px solid white;
-            border-radius: 50%;
-            padding: 5px 10px;
-            transition: background-color 0.3s ease;
+            font-weight: 400;
         }
 
-        .home-icon:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
+            nav ul { font-size: 20px; }
+            nav ul li { margin-left: 12px; }
         }
 
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        @media (max-width: 480px) {
+            nav ul { font-size: 17px; }
+            nav ul li { margin-left: 8px; }
+        }
+
+        /* ── Page wrap ── */
+        .page-container {
             max-width: 1200px;
-            margin: 60px auto 0; /* Added margin-top to avoid overlapping with the icon */
+            margin: 0 auto;
+            padding: 80px 40px 60px;
         }
-        .project-title {
+
+        /* ── Header ── */
+        .page-header {
             text-align: center;
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: #ffffff;
+            margin-bottom: 44px;
         }
-        .project-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
-            text-decoration: none; /* Ensure no underline */
-            color: inherit; /* Inherit text color */
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* ── Filter pills ── */
+        .filter-bar {
             display: flex;
-            flex-direction: column; /* Ensure content fills the card */
-            height: 100%; /* Ensure the card takes full height */
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        .filter-pill {
+            padding: 7px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.75);
+            font-family: "Agdasima", sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: rgba(147, 51, 234, 0.25);
+            border-color: #9333ea;
+            color: #fff;
+        }
+
+        /* ── Card grid ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* ── Project card ── */
+        .project-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
         }
 
-        .project-card img {
-            width: 100%;
+        /* Card image area */
+        .card-image {
             height: 180px;
-            object-fit: cover;
+            overflow: hidden;
+            position: relative;
         }
 
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .project-card:hover .card-image img {
+            transform: scale(1.06);
+        }
+
+        /* Category badge */
+        .category-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(79, 70, 229, 0.9);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Card body */
         .project-content {
-            padding: 15px;
-            flex-grow: 1; /* Ensures the content expands to fill available space */
+            padding: 18px 20px 20px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .project-card a, .project-card a:hover, .project-card a:focus, .project-card a:visited {
-            text-decoration: none;
-            color: inherit; /* Ensure link color stays the same */
         }
 
         .project-content h3 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1.25;
         }
 
         .project-content p {
-            font-size: 20px;
-            color: #000000;
-            margin-bottom: 5px;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            flex-grow: 1;
+            margin-bottom: 12px;
         }
 
         .project-content .date {
-            font-size: 12px;
+            font-size: 13px;
             color: #aaa;
-            margin-top: auto; /* Pushes the date to the bottom */
+            margin-top: auto;
         }
-        
 
+        /* ── Responsive ── */
         @media (max-width: 768px) {
-            .projects-container {
+            .page-container {
+                padding: 80px 20px 50px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .page-header p {
+                font-size: 17px;
+            }
+
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .filter-pill {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+        }
+        /* ── Footer ── */
+        footer {
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            padding: 70px 0 0;
+            font-family: "Agdasima", sans-serif;
+        }
+        footer::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d0d0d, #4f46e5, #9333ea, #4f46e5, #0d0d0d);
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .footer-brand h2 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 40%, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .footer-brand .tagline {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+        .footer-info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 17px;
+            color: #bbb;
+        }
+        .footer-info-row i { color: #7c3aed; font-size: 18px; width: 20px; text-align: center; }
+        .footer-info-row a { color: #bbb; text-decoration: none; transition: color 0.3s; }
+        .footer-info-row a:hover { color: #fff; }
+        .social-pills { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+        .social-pills a {
+            display: flex; align-items: center; gap: 8px;
+            padding: 9px 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px;
+            color: #ccc; text-decoration: none; font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(4px);
+        }
+        .social-pills a:hover {
+            background: rgba(147,51,234,0.2);
+            border-color: #9333ea; color: #fff;
+            box-shadow: 0 0 18px rgba(147,51,234,0.35);
+            transform: translateY(-2px);
+        }
+        .social-pills a i { font-size: 16px; }
+        .footer-form-wrap {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 36px 32px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .footer-form-wrap h3 { font-size: 24px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+        .footer-form-wrap p.form-sub { font-size: 15px; color: #777; margin-bottom: 24px; }
+        .footer-form-wrap input,
+        .footer-form-wrap textarea {
+            width: 100%; background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 12px 16px;
+            color: #fff; font-family: "Agdasima", sans-serif;
+            font-size: 16px; margin-bottom: 14px;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .footer-form-wrap input::placeholder,
+        .footer-form-wrap textarea::placeholder { color: #555; }
+        .footer-form-wrap input:focus,
+        .footer-form-wrap textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
+        }
+        .footer-form-wrap textarea { height: 110px; resize: vertical; }
+        .footer-form-wrap button {
+            width: 100%; padding: 13px; border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: #fff; font-family: "Agdasima", sans-serif;
+            font-size: 18px; font-weight: 700; letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+        }
+        .footer-form-wrap button:hover {
+            opacity: 0.9; transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(124,58,237,0.6);
+        }
+        .footer-bottom {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 20px 40px;
+            max-width: 1100px;
+            margin-left: auto; margin-right: auto;
+            display: flex; justify-content: space-between;
+            align-items: center; font-size: 14px; color: #444;
+        }
+        .footer-bottom a { color: #555; text-decoration: none; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #9333ea; }
+        @media (max-width: 768px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            footer { padding: 50px 0 0; }
+            .footer-brand h2 { font-size: 34px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; }
+        }
+        @media (max-width: 480px) {
+            .footer-form-wrap { padding: 24px 18px; }
+            .social-pills { gap: 8px; }
+            .social-pills a { padding: 8px 14px; font-size: 14px; }
+            .footer-info-row { font-size: 15px; word-break: break-word; }
         }
     </style>
 </head>
 <body>
-    <!-- Home icon linking back to the index page -->
-    <a href="index.html" class="home-icon">&#8962;</a> <!-- Unicode character for a house symbol -->
 
-    <div class="project-title">
-        <h1>Projects</h1>
+    <nav>
+        <div class="logo"><h1><a href="index.html" style="color:white;text-decoration:none;">NR</a></h1></div>
+        <ul>
+            <li><a href="Project.html">Projects</a></li>
+            <li><a href="Aboutme.html">About Me</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="casestudies.html">Case Studies</a></li>
+        </ul>
+    </nav>
 
-    <div class="projects-container">
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb" target="_blank" class="project-card">
-            <img src="flightprediction.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>Airflight delay prediction</h3>
-                <p>The Air Flight Status Analysis and Prediction project is focused on understanding and predicting the status of air flights using historical data.
-                The project utilizes PySpark, a big data processing framework, to handle large datasets efficiently. 
-                The primary goal of this project is to analyze flight data and build predictive models that can determine various outcomes, such as flight delays, cancellations, and other status-related metrics.</p>
-                <p class="date">January 17, 2024</p>
-            </div>
-        </a>
+    <div class="page-container" style="padding-top:100px;">
 
-        <!-- Project Card 2 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Cardovascular%20Analysis/Cardovascular_diseases_analysis.ipynb" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="car.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>Car Evaluation Analysis</h3>
-                <p> Decision Tree Algorithm to predict the acceptability of a car based on its attributes such as price, maintenance cost, number of doors, luggage boot size, and safety rating.
-                    I will be using the Car Evaluation Dataset obtained from UCI Machine Learning Repository. Visualization of the correlation matrix between the features in the car evaluation dataset and Prepruning and Decision Tree Implementation
-                </p>
-                <p class="date">August 26, 2023</p>
-            </div>
+        <!-- Header -->
+        <div class="page-header">
+            <h1>Projects</h1>
+            <p>A collection of machine learning, NLP, computer vision and sports analytics projects built from real datasets.</p>
         </div>
-        </a>
 
-        <!-- Project Card 3 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/tree/main/Cardovascular%20Analysis" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="cardio.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>Cardiovascular Diseases Analysis</h3>
-                <p>This project centres around the analysis and prediction of heart disease using the Heart Attack Dataset, which comprises a comprehensive collection of health attributes from over 900 patients.
-                   The goal is to explore and analyze these data points to uncover patterns that can predict cardiovascular risks and assist in making informed medical decisions</p>
-                <p class="date">July 01, 2023</p>
-            </div>
+        <!-- Filter pills -->
+        <div class="filter-bar">
+            <button class="filter-pill active" data-filter="all">All</button>
+            <button class="filter-pill" data-filter="ml">ML &amp; Predictive Modelling</button>
+            <button class="filter-pill" data-filter="nlp">NLP &amp; Generative AI</button>
+            <button class="filter-pill" data-filter="cv">Computer Vision &amp; Sports</button>
         </div>
-        </a>
 
-        <!-- Project Card 4 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="yolo.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>Football Analysis with Deep Learning</h3>
-                <p>The project aim is to detect entities in a football game using advanced deep learning techniques, to track the entites detected in real-time and represent them in a two dimensional map, and finally extract row data for further analysis.</p>
-                <p class="date">June 12, 2023</p>
-            </div>
-        </div>
-        </a>
+        <!-- Cards -->
+        <div class="projects-grid" id="projects-grid">
 
-        <!-- Project Card 5 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/NLTK%20for%20Sentiment%20Analysis/NLTK_Sentiment_Analysis.ipynb" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="nlp.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>NLTK for Sentiment Analysis</h3>
-                <p>Natural Language Processing Python Project creating a Sentiment Analysis classifier with NLTK's VADER and Huggingface Roberta Transformers.
-                The project is to classify the seniment of amazon customer reviews.</p>
-                <p class="date">May 15, 2023</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Project Card 6 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="finance.jpg" alt="Project Image">
-            <div class="project-content">
-                <h3>Credit Risk Analysis</h3>
-                <p>This is a classification project that aims for predicting credit risk or in simpler terms will help the companies to predict bad loans. Predicting the credibility of a loan is very useful in the Banking business. 
-                   Using machine learning will help to decide, whether to approve a loan or not by accounting for the risk value based on historical data.</p>
-                <p class="date">April 28, 2023</p>
-            </div>
-        </div>
-        </a>
-
-        <!-- Project Card 7 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb" target="_blank" class="project-card">
-        <div class="project-card">
-            <img src="netflix.jpg" alt="Project Image">
-                    <div class="project-content">
-                        <h3>GPT-2 to Generate Netflix Description</h3>
-                        <p>This model is based on the GPT-2 language model architecture, which is designed to generate coherent and contextually relevant text. The model takes in a sequence of text (in this case, a Netflix show description) and tries to predict the next words in the sequence.</p>
-                        <p class="date">Aug 18, 2023</p>
-                    </div>
-            </div>
-        </a>
-
-        <!-- Project Card 8 -->
-        <a href="https://github.com/Nikrapa/ChatbotProject" target="_blank" class="project-card">
-            <div class="project-card">
-                <img src="AI-Chatbots.jpg" alt="Project Image">
-                        <div class="project-content">
-                            <h3>Implement a Chatbot</h3>
-                            <p>Implement a chatbot from scratch that will be able to understand what the user is talking about and give an appropriate response.</p>
-                            <p class="date">May 4, 2024</p>
-                        </div>
+            <!-- Card 1 — ML -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb"
+               target="_blank" class="project-card" data-category="ml">
+                <div class="card-image">
+                    <img src="flightprediction.jpg" alt="Airflight delay prediction">
+                    <span class="category-badge">ML &amp; Predictive Modelling</span>
                 </div>
-        </a>
-        
-        <!-- Project Card 9 -->
-        <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/FootballTransferWindow/Football_Transfer_Window_(Juventus_FC_2022)_.ipynb" target="_blank" class="project-card">
-            <div class="project-card">
-                <img src="transferwindow.jpg" alt="Project Image">
-                        <div class="project-content">
-                            <h3>EDA Football Transfer Window (Juventus 2022)</h3>
-                            <p>Very basic and simple exploratory data analysis (EDA) for main transfers to top leagues in the current summer transfer window, some teams investing a lot of money to be at the top for the upcoming season. Let's answer some question by using different graphs and charts .</p>
-                            <p class="date">Jun 14, 2024</p>
-                        </div>
+                <div class="project-content">
+                    <h3>Airflight Delay Prediction</h3>
+                    <p>End-to-end flight status analysis and prediction using PySpark on large historical datasets, modelling delays, cancellations and other status-related outcomes.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>January 17, 2024</p>
                 </div>
-        </a>
+            </a>
 
-        <!-- Project Card 10 -->
-        <a href="https://github.com/Nikrapa/PredictingEPLMatchResults/blob/main/Predictin_EPL_Football_Match_Winners.ipynb" target="_blank" class="project-card">
-            <div class="project-card">
-                <img src="epl.png" alt="Project Image">
-                        <div class="project-content">
-                            <h3>English Premier Leauge Match Prediction 2021-2022</h3>
-                            <p>Predict match winners in the English Premier League (EPL) using machine learning, how to prepare data for machine learning, work with time series data, measure error, and improve your model performance.</p>
-                            <p class="date">Sep 22, 2024</p>
-                        </div>
+            <!-- Card 2 — ML -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Cardovascular%20Analysis/Cardovascular_diseases_analysis.ipynb"
+               target="_blank" class="project-card" data-category="ml">
+                <div class="card-image">
+                    <img src="car.jpg" alt="Car Evaluation Analysis">
+                    <span class="category-badge">ML &amp; Predictive Modelling</span>
                 </div>
-        </a>
+                <div class="project-content">
+                    <h3>Car Evaluation Analysis</h3>
+                    <p>Decision Tree algorithm to predict car acceptability based on price, maintenance, doors, boot size and safety rating, using the UCI Car Evaluation Dataset with pre-pruning and visualisation.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>August 26, 2023</p>
+                </div>
+            </a>
 
-    </div>
+            <!-- Card 3 — ML -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/tree/main/Cardovascular%20Analysis"
+               target="_blank" class="project-card" data-category="ml">
+                <div class="card-image">
+                    <img src="cardio.jpg" alt="Cardiovascular Diseases Analysis">
+                    <span class="category-badge">ML &amp; Predictive Modelling</span>
+                </div>
+                <div class="project-content">
+                    <h3>Cardiovascular Diseases Analysis</h3>
+                    <p>Analysis and prediction of heart disease using a dataset of 900+ patients, uncovering patterns to predict cardiovascular risks and support informed medical decisions.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>July 01, 2023</p>
+                </div>
+            </a>
+
+            <!-- Card 4 — CV -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Airflights/AirFlight.ipynb"
+               target="_blank" class="project-card" data-category="cv">
+                <div class="card-image">
+                    <img src="yolo.jpg" alt="Football Analysis with Deep Learning">
+                    <span class="category-badge">Computer Vision &amp; Sports</span>
+                </div>
+                <div class="project-content">
+                    <h3>Football Analysis with Deep Learning</h3>
+                    <p>YOLO-powered entity detection in football footage with real-time tracking, 2D map representation and raw data extraction for post-match analytics.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>June 12, 2023</p>
+                </div>
+            </a>
+
+            <!-- Card 5 — NLP -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/NLTK%20for%20Sentiment%20Analysis/NLTK_Sentiment_Analysis.ipynb"
+               target="_blank" class="project-card" data-category="nlp">
+                <div class="card-image">
+                    <img src="nlp.jpg" alt="NLTK Sentiment Analysis">
+                    <span class="category-badge">NLP &amp; Generative AI</span>
+                </div>
+                <div class="project-content">
+                    <h3>NLTK for Sentiment Analysis</h3>
+                    <p>Sentiment classifier built with NLTK's VADER and HuggingFace RoBERTa Transformers, applied to Amazon customer reviews to compare lexicon-based vs. deep-learning approaches.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>May 15, 2023</p>
+                </div>
+            </a>
+
+            <!-- Card 6 — ML -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb"
+               target="_blank" class="project-card" data-category="ml">
+                <div class="card-image">
+                    <img src="finance.jpg" alt="Credit Risk Analysis">
+                    <span class="category-badge">ML &amp; Predictive Modelling</span>
+                </div>
+                <div class="project-content">
+                    <h3>Credit Risk Analysis</h3>
+                    <p>Classification model to predict bad loans, helping banks decide whether to approve credit by accounting for risk based on historical applicant data.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>April 28, 2023</p>
+                </div>
+            </a>
+
+            <!-- Card 7 — NLP -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/Credit%20Risk%20Analysis/Credit_Data.ipynb"
+               target="_blank" class="project-card" data-category="nlp">
+                <div class="card-image">
+                    <img src="netflix.jpg" alt="GPT-2 Netflix Description Generator">
+                    <span class="category-badge">NLP &amp; Generative AI</span>
+                </div>
+                <div class="project-content">
+                    <h3>GPT-2 Netflix Description Generator</h3>
+                    <p>Fine-tuned GPT-2 to generate coherent, contextually relevant Netflix show descriptions, demonstrating auto-regressive language model capabilities on a creative text task.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>August 18, 2023</p>
+                </div>
+            </a>
+
+            <!-- Card 8 — NLP -->
+            <a href="https://github.com/Nikrapa/ChatbotProject" target="_blank" class="project-card" data-category="nlp">
+                <div class="card-image">
+                    <img src="AI-Chatbots.jpg" alt="Chatbot Implementation">
+                    <span class="category-badge">NLP &amp; Generative AI</span>
+                </div>
+                <div class="project-content">
+                    <h3>Chatbot Implementation</h3>
+                    <p>Rule-based and ML-driven chatbot built from scratch, capable of understanding user intent and generating contextually appropriate responses.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>May 4, 2024</p>
+                </div>
+            </a>
+
+            <!-- Card 9 — CV -->
+            <a href="https://github.com/Nikrapa/ExploratoryDataAnalysis/blob/main/FootballTransferWindow/Football_Transfer_Window_(Juventus_FC_2022)_.ipynb"
+               target="_blank" class="project-card" data-category="cv">
+                <div class="card-image">
+                    <img src="transferwindow.jpg" alt="EDA Football Transfer Window">
+                    <span class="category-badge">Computer Vision &amp; Sports</span>
+                </div>
+                <div class="project-content">
+                    <h3>EDA — Football Transfer Window (Juventus 2022)</h3>
+                    <p>Exploratory data analysis of summer transfer activity across top European leagues, using charts and graphs to answer key questions about transfer spending and trends.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>June 14, 2024</p>
+                </div>
+            </a>
+
+            <!-- Card 10 — ML -->
+            <a href="https://github.com/Nikrapa/PredictingEPLMatchResults/blob/main/Predictin_EPL_Football_Match_Winners.ipynb"
+               target="_blank" class="project-card" data-category="ml">
+                <div class="card-image">
+                    <img src="epl.png" alt="EPL Match Prediction">
+                    <span class="category-badge">ML &amp; Predictive Modelling</span>
+                </div>
+                <div class="project-content">
+                    <h3>EPL Match Prediction 2021–2022</h3>
+                    <p>Machine learning model predicting Premier League match winners using time-series data, with a focus on feature engineering, error measurement and iterative performance improvement.</p>
+                    <p class="date"><i class="fas fa-calendar-alt" style="color:#7c3aed;margin-right:4px"></i>September 22, 2024</p>
+                </div>
+            </a>
+
+        </div><!-- /projects-grid -->
+
+    </div><!-- /page-container -->
+
+    <script>
+        const pills = document.querySelectorAll('.filter-pill');
+        const cards = document.querySelectorAll('.project-card');
+
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                const filter = pill.dataset.filter;
+                cards.forEach(card => {
+                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
+                });
+            });
+        });
+    </script>
+    <!-- Footer Section -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h2>NR</h2>
+                <p class="tagline">Machine Learning &amp; Data Science</p>
+                <div class="footer-info-row">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:rapacchianinicola@gmail.com">rapacchianinicola@gmail.com</a>
+                </div>
+                <div class="footer-info-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>1 Draycot Road E11 2NU, London, UK</span>
+                </div>
+                <div class="social-pills">
+                    <a href="https://github.com/Nikrapa" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="footer-form-wrap">
+                <h3>Get in Touch</h3>
+                <p class="form-sub">Drop me a message and I'll get back to you.</p>
+                <form>
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <button type="submit">Send Message &rarr;</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Nicola Rapacchiani. All rights reserved.</span>
+            <span>Built with passion in London 🇬🇧</span>
+        </div>
+    </footer>
+
 </body>
 </html>
