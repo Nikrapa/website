@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,272 +8,592 @@
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
     <title>About Me</title>
     <style>
-    /* Global Styling */
-* {
-    box-sizing: border-box; /* Ensures padding and border are included in width calculations */
-}
+        /* Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: "Agdasima", sans-serif;
-    background: url('galaxy1.jpg') no-repeat center center/cover;
-    color: #000000;
-    margin: 0;
-    padding: 0;
-}
+        body {
+            font-family: "Agdasima", sans-serif;
+            background: url('galaxy1.jpg') no-repeat center center/cover;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Home icon styling */
-.home-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 20px;
-    color: white;
-    text-decoration: none;
-    border: 2px solid white;
-    border-radius: 50%;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
-}
+        /* ── Nav ── */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            z-index: 200;
+        }
 
-.home-icon:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+        nav .logo h1 {
+            color: white;
+            font-size: 24px;
+        }
 
-/* CV download link styling */
-.cv-download {
-    position: absolute;
-    top: 30px; /* Adjust the position to be below the home icon */
-    right: 20px;
-    font-size: 16px;
-    color: white;
-    text-decoration: none;
-    border: 2px solid white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            font-size: 30px;
+        }
 
-.cv-download:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+        nav ul li {
+            margin-left: 20px;
+        }
 
-/* Container */
-.about-container {
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0);
-    margin-top: 50px;
-}
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+        }
 
-/* Profile Section */
-.profile-section {
-    text-align: center; /* This centers the content inside the section */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.profile-item{
-    background-color: #f9f9f9;  
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%; /* Ensure skill-item container takes the full width available */
-    text-align: left; /* Aligns the text to the left */
-}
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 20px;
-    display: flex; /* Ensure the image is treated as a block element */
-    justify-content: center;
-}
+        /* CV download — fixed bottom-right */
+        .cv-download {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            transition: background-color 0.3s ease;
+            z-index: 200;
+        }
 
-.profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .cv-download:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
-.profile-info h1 {
-    font-size: 30px;
-    color: #fdfdfd;
-    margin-bottom: 10px;
-}
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 20px;
+            }
 
-.profile-info p {
-    font-size: 20px;
-    color: #0c0c0c;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
+            nav ul {
+                font-size: 20px;
+            }
 
-/* Skills Section */
-.skills-section {
-    width: 100%; /* Matches the width of the experience section */
-    margin-top: 40px;
-}
+            nav ul li {
+                margin-left: 12px;
+            }
 
-.skill-item {
-    background-color: #f9f9f9;  
-    padding: 20px;
-    font-size: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%; /* Ensure skill-item container takes the full width available */
-    text-align: left; /* Aligns the text to the left */
-}
+            .cv-download {
+                bottom: 16px;
+                right: 16px;
+                font-size: 14px;
+            }
+        }
 
-.skills-section h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
+        @media (max-width: 480px) {
+            nav ul {
+                font-size: 17px;
+            }
 
-.skills-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    margin-left: 0;
-}
+            nav ul li {
+                margin-left: 8px;
+            }
+        }
 
-.skills-section ul li {
-    margin-bottom: 10px;
-}
+        /* Container */
+        .about-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0);
+            margin-top: 90px;
+        }
 
-/* Experience Section */
-.experience-section {
-    margin-top: 20px;
-    width: 100%;
-}
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            /* This centers the content inside the section */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-.experience-item {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%;
-    font-size: 20px;
-}
+        .profile-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            /* Ensure skill-item container takes the full width available */
+            text-align: left;
+            /* Aligns the text to the left */
+        }
 
-.experience-section h2 {
-    font-size: 30px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    text-align: center;
-}
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            /* Ensure the image is treated as a block element */
+            justify-content: center;
+        }
 
-/* Qualifications Section */
-.qualifications-section {
-    margin-top: 10px;
-    width: 100%;
-}
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.qualifications-section h2 {
-    font-size: 30px;
-    color: #ffffff;
-    margin-bottom: 20px;
-    text-align: center;
-}
+        .profile-info h1 {
+            font-size: 30px;
+            color: #fdfdfd;
+            margin-bottom: 10px;
+        }
 
-.qualifications-item {
-    background-color: #f9f9f9;
-    padding: 20px;
-    font-size: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
+        .profile-info p {
+            font-size: 20px;
+            color: #0c0c0c;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
 
-/* Social Media Section */
-.social-section {
-    margin-top: 40px;
-    text-align: center;
-    color: #ffffff;
-}
+        /* Skills Section */
+        .skills-section {
+            width: 100%;
+            /* Matches the width of the experience section */
+            margin-top: 40px;
+        }
 
-.social-icons {
-    display: flex;
-    justify-content: center;
-}
+        .skill-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            /* Ensure skill-item container takes the full width available */
+            text-align: left;
+            /* Aligns the text to the left */
+        }
 
-.social-icons a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #ffffff;
-}
+        .skills-section h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-.social-icons i {
-    font-size: 24px;
-}
+        .skills-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            margin-left: 0;
+        }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .about-container {
-        padding: 15px;
-    }
+        .skills-section ul li {
+            margin-bottom: 10px;
+        }
 
-    .skills-section {
-        margin-top: 30px;
-    }
+        /* Experience Section */
+        .experience-section {
+            margin-top: 20px;
+            width: 100%;
+        }
 
-    .skills-section ul {
-        margin-left: 10px;
-    }
+        .experience-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            font-size: 20px;
+        }
 
-    .experience-section h2, .qualifications-section h2 {
-        font-size: 22px;
-    }
+        .experience-section h2 {
+            font-size: 30px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    .skills-section ul li {
-        font-size: 12px;
-    }
+        /* Qualifications Section */
+        .qualifications-section {
+            margin-top: 10px;
+            width: 100%;
+        }
 
-    .skill-item {
-        padding: 8px 15px;
-        font-size: 12px;
-    }
-}
+        .qualifications-section h2 {
+            font-size: 30px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
+        .qualifications-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            margin-top: 40px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .social-icons i {
+            font-size: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-container {
+                padding: 15px;
+            }
+
+            .skills-section {
+                margin-top: 30px;
+            }
+
+            .skills-section ul {
+                margin-left: 10px;
+            }
+
+            .experience-section h2,
+            .qualifications-section h2 {
+                font-size: 22px;
+            }
+
+            .skills-section ul li {
+                font-size: 12px;
+            }
+
+            .skill-item {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
+
+        /* ── Footer ── */
+        footer {
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            padding: 70px 0 0;
+            font-family: "Agdasima", sans-serif;
+        }
+
+        footer::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d0d0d, #4f46e5, #9333ea, #4f46e5, #0d0d0d);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .footer-brand h2 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 40%, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .footer-brand .tagline {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        .footer-info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 17px;
+            color: #bbb;
+        }
+
+        .footer-info-row i {
+            color: #7c3aed;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-info-row a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info-row a:hover {
+            color: #fff;
+        }
+
+        .social-pills {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-pills a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+        }
+
+        .social-pills a:hover {
+            background: rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+            color: #fff;
+            box-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .social-pills a i {
+            font-size: 16px;
+        }
+
+        .footer-form-wrap {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 36px 32px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-form-wrap h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .footer-form-wrap p.form-sub {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 24px;
+        }
+
+        .footer-form-wrap input,
+        .footer-form-wrap textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 16px;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .footer-form-wrap input::placeholder,
+        .footer-form-wrap textarea::placeholder {
+            color: #555;
+        }
+
+        .footer-form-wrap input:focus,
+        .footer-form-wrap textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .footer-form-wrap textarea {
+            height: 110px;
+            resize: vertical;
+        }
+
+        .footer-form-wrap button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .footer-form-wrap button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.6);
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 20px 40px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .footer-bottom a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom a:hover {
+            color: #9333ea;
+        }
+
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 24px;
+            }
+
+            footer {
+                padding: 50px 0 0;
+            }
+
+            .footer-brand h2 {
+                font-size: 34px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 20px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-form-wrap {
+                padding: 24px 18px;
+            }
+
+            .social-pills {
+                gap: 8px;
+            }
+
+            .social-pills a {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
+            .footer-info-row {
+                font-size: 15px;
+                word-break: break-word;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <a href="index.html" class="home-icon">&#8962;</a>
-    <!-- CV Download Link -->
-    <a href="Rapacchiani Nicola CV .pdf" class="cv-download" download>Download CV</a>
+    <nav>
+        <div class="logo">
+            <h1><a href="index.html" style="color:white;text-decoration:none;">NR</a></h1>
+        </div>
+        <ul>
+            <li><a href="Project.html">Projects</a></li>
+            <li><a href="Aboutme.html">About Me</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="casestudies.html">Case Studies</a></li>
+        </ul>
+    </nav>
 
     <!-- About Me Section -->
     <div class="about-container">
         <!-- Profile Info -->
         <div class="profile-section">
             <div class="profile-pic">
-                <img src="profpict.jpg" alt="Profile Picture">
+                <img src="profpic22.jpg" alt="Profile Picture">
             </div>
             <div class="profile-info">
                 <h1>About Me</h1>
                 <div class="profile-item">
-                <p>Data Analyst/Scientist with a strong foundation in Python and SQL, specializing in transforming complex data
-                    into actionable insights. Proficient in data visualization using Power BI and Python libraries. Experienced in
-                    automating data processes to increase efficiency and in implementing machine learning models (including
-                    Scikit-Learn, TensorFlow, and PyTorch) to uncover deeper patterns and insights. Passionate about leveraging
-                    data to solve real-world problems in finance, marketing, and sports. Eager to contribute to innovative teams
-                    and drive data-driven decisions. 
-                </p>
+                    <p>Data Science &amp; AI expert with practical experience developing AI-powered solutions and
+                        automation systems.
+                        Skilled in building predictive models, NLP pipelines, and workflow automation to enhance
+                        operational efficiency
+                        and decision support. Published research in applied AI and delivered AI-driven process
+                        improvements for small
+                        businesses through automation and data integration.
+                    </p>
+                    <p style="margin-top:12px;"><strong>Languages:</strong> English &bull; Italian &bull; Spanish</p>
                 </div>
             </div>
         </div>
@@ -281,62 +602,91 @@ body {
         <!-- Experience Section -->
         <div class="experience-section">
             <h2>Experience</h2>
+
             <div class="experience-item">
-                <h3>Data Analyst | TELUS International</h3>
-                <p>DEC 2022 – MAY 2024</p>
-                <p>• Conducted in-depth analysis of customer datasets using Python (pandas and NumPy libraries) and
-                    MS Excel. Identified the pattern in the rates, frequently purchased items and peak engagement
-                    times. This analysis contributed to a campaign that resulted in 15% increase in customer retention
-                    in one year.</p>
-                <p>• Developed scripts in Python on Google Colab or Jupyter Notebook to automate the data validation
-                    process. This involved checking for missing values, inconsistent formats and duplicates across
-                    tables. This automation reduces drastically the validation time and enabled a faster access to clean
-                    data.</p>
-                <p>• Built Power BI dashboards and reports for the marketing team, integrating data from SQL Server or
-                    CSV files. Set up interactive visuals to track weekly updates in product category sales and customer
-                    demographic. </p>
+                <h3>AI-Data Expert Consultant | Self-Employed</h3>
+                <p>April 2025 – Present</p>
+                <p>• Designed and deployed automated Shopify and API-based workflows, reducing manual inventory
+                    management by ~80% and improving stock accuracy.</p>
+                <p>• Built integrated reservation tracking systems using Hostaway API and Python, consolidating
+                    multi-platform bookings into live datasets with hourly automated updates.</p>
+                <p>• Developed automated financial and performance dashboards, including property-level P&amp;L
+                    reporting and AI-assisted invoicing workflows to streamline business operations.</p>
             </div>
 
             <div class="experience-item">
-                <h3>Data Engineer (Internship) | DataArt</h3>
-                <p>JAN 2023 – APR 2023</p>
-                <p>• Developed and maintained automated data pipelines using Microsoft Azure Data Factory,
-                    streamlining the transfer of large datasets (up to 10GB per batch) from Azure Blob Storage (CSV
-                    format) to a cloud-based SQL Server</p>
-                <p>• Improved data transfer efficiency by approximately 10%, significantly reducing the process time for
-                    data ingestion. </p>
+                <h3>Project Support Office &amp; Researcher | University of East London – Data Science &amp; AI Dept.
+                </h3>
+                <p>May 2025 – Dec 2025</p>
+                <p>• Led applied AI research projects focused on predictive modelling and NLP for decision support.</p>
+                <p>• Developed a survival analysis (AFT-XGBoost) injury prediction model with SHAP explainability and
+                    deployed a Streamlit application integrated with a RAG + GPT assistant.</p>
+                <p>• Conducted sentiment and emotion analysis using Hugging Face models, achieving up to 98%
+                    classification accuracy.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Data Analyst | TELUS International</h3>
+                <p>Jul 2024 – Dec 2024</p>
+                <p>• Analyzed customer datasets using Python, SQL, and Excel, contributing to a 15% improvement in
+                    customer retention.</p>
+                <p>• Automated data validation processes and built Power BI dashboards to monitor KPIs and marketing
+                    performance.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Data Engineer – Internship | Datart</h3>
+                <p>May 2024 – Jun 2024</p>
+                <p>• Developed automated ETL pipelines in Azure Data Factory processing datasets up to 10GB into SQL
+                    Server environments.</p>
+                <p>• Ensured reliable data ingestion and integrity through structured validation and preprocessing
+                    workflows.</p>
             </div>
         </div>
 
         <!-- Qualifications Section -->
         <div class="qualifications-section">
-            <h2>Education & Certifications</h2>
+            <h2>Education &amp; Certifications</h2>
             <div class="qualifications-item">
-                <h3>BSc Data Science and Artificial Intelligence | University of East London</h3>
-                <p>SEP 2021 – MAY 2024 | First Class</p>
-                <p>• Relevant Modules:
-                    Data Structure and Algorithm, Programming for Data Science, Database System, Cloud Computing, Artificial
-                    Intelligence, Advanced Topic in AI, Big Data, Power BI and Excel. </p>
-                <p>Main Key Projects:</p>
-                 <p>• Predictive Analytics Project: Developed a predictive AI model using Python to forecast flight crashes
-                    and departure delayed.</p>
-                 <p>• Database Management: Designed and implemented a relational database system for an existing
-                    renting car company using MySQL (Cloud).</p>
-                 <p>• Dissertation Project: Football Entity Detection and Tracking using Artificial Intelligence system like
-                    Yolo Models and further match analysis performances using Python. </p>
+                <h3>BSc Data Science &amp; Artificial Intelligence – First Class | University of East London</h3>
+                <p>Sep 2021 – May 2024</p>
+                <p>• Graduated with First-Class Honours.</p>
+                <p>• Key focus areas: Machine Learning, Cloud Computing, Database Systems, Big Data, AI, and Applied
+                    Analytics.</p>
             </div>
 
             <div class="qualifications-item">
                 <h3>Google Professional Data Engineer Certificate</h3>
-                <p>MAY 2024 – JUN 2024</p>
-                <p>Designed and implemented scalable data processing systems, managing ingestion, storage, and processing
+                <p>May 2024 – Jun 2024</p>
+                <p>Designed and implemented scalable data processing systems, managing ingestion, storage, and
+                    processing
                     of large datasets using ETL practices on Microsoft Azure. Automated and maintained data workloads,
-                    ensuring data operations and enabling continuous integration and deployment pipelines</p>
+                    ensuring continuous integration and deployment pipelines.</p>
             </div>
             <div class="qualifications-item">
-                <h3>Website Developer - BIT ONLINE</h3>
-                <p>JAN 2018 – JAN 2019</p>
-                <p>Relevant Modules: HTML, CSS, PHP, and JavaScript. Use of WordPress, Mailchimp, Google ADS, Google Analytics. Digital Marketing and e-mail campaign strategy.</p>
+                <h3>Website Developer – BIT ONLINE</h3>
+                <p>Jan 2018 – Jan 2019</p>
+                <p>Relevant Modules: HTML, CSS, PHP, and JavaScript. Use of WordPress, Mailchimp, Google Ads, Google
+                    Analytics. Digital Marketing and e-mail campaign strategy.</p>
+            </div>
+        </div>
+
+        <!-- Activities & Interests Section -->
+        <div class="qualifications-section">
+            <h2>Activities &amp; Interests</h2>
+            <div class="qualifications-item">
+                <h3>⚽ Semi-Professional Football Player</h3>
+                <p>Developed tactical awareness, performance analysis understanding, and team-based decision-making
+                    under pressure.</p>
+            </div>
+            <div class="qualifications-item">
+                <h3>🏅 UEFA B Licensed Football Coach (FIGC)</h3>
+                <p>Trained in performance analysis, tactical planning, and structured player development methodologies.
+                </p>
+            </div>
+            <div class="qualifications-item">
+                <h3>♟️ Active Member, Chess Club</h3>
+                <p>Strengthened analytical thinking, strategic planning, and problem-solving skills.</p>
             </div>
         </div>
 
@@ -350,5 +700,42 @@ body {
             </div>
         </div>
     </div>
+    <!-- CV Download Link (fixed bottom-right) -->
+    <a href="Rapacchiani Nicola CV .pdf" class="cv-download" download>&#8595; Download CV</a>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h2>NR</h2>
+                <p class="tagline">Machine Learning &amp; Data Science</p>
+                <div class="footer-info-row"><i class="fas fa-envelope"></i><a
+                        href="mailto:rapacchianinicola@gmail.com">rapacchianinicola@gmail.com</a></div>
+                <div class="footer-info-row"><i class="fas fa-map-marker-alt"></i><span>1 Draycot Road E11 2NU, London,
+                        UK</span></div>
+                <div class="social-pills">
+                    <a href="https://github.com/Nikrapa" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="footer-form-wrap">
+                <h3>Get in Touch</h3>
+                <p class="form-sub">Drop me a message and I'll get back to you.</p>
+                <form>
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <button type="submit">Send Message &rarr;</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Nicola Rapacchiani. All rights reserved.</span>
+            <span>Built with passion in London 🇬🇧</span>
+        </div>
+    </footer>
+
 </body>
+
 </html>
