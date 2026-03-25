@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Nicola Rapacchiani - Machine Learning & Data Science Portfolio</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: "Agdasima", sans-serif;
             font-weight: 400;
             font-style: normal;
             color: #fff;
         }
-        
+
         .hero {
             height: 100vh;
             background: url('galaxy1.jpg') no-repeat center center/cover;
@@ -30,8 +31,27 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        #star-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* let mouse events pass through to the page */
+            z-index: 0;
+        }
+
+        nav,
+        .main-content {
+            position: relative;
+            z-index: 1;
+        }
+
         nav {
             width: 100%;
             display: flex;
@@ -40,32 +60,32 @@
             position: absolute;
             top: 0;
         }
-        
+
         nav .logo h1 {
             color: white;
             font-size: 24px;
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
-            font-size: 24px;
+            font-size: 30px;
         }
-        
+
         nav ul li {
             margin-left: 20px;
         }
-        
+
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 400;
         }
-        
+
         .main-content {
             margin-top: 100px;
         }
-        
+
         .main-content .photo {
             width: 130px;
             height: 130px;
@@ -73,110 +93,337 @@
             overflow: hidden;
             margin: 0 auto 18px;
         }
-        
+
         .main-content .photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .main-content h1 {
-            font-size: 60px;
+            font-size: 76px;
             font-weight: 700;
             margin-bottom: 10px;
         }
-        
+
         .main-content p {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: 300;
             width: 50%;
             margin: 0 auto;
         }
-        
-        /* Footer Styling */
+
+        /* ── Footer ──────────────────────────────────────────── */
         footer {
-            background-color: black;
-            color: white;
-            padding: 40px 0;
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            padding: 70px 0 0;
+            font-family: "Agdasima", sans-serif;
         }
-        
-        .footer-content {
-            max-width: 1000px;
+
+        /* Cosmic gradient top accent */
+        footer::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d0d0d, #4f46e5, #9333ea, #4f46e5, #0d0d0d);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ── Left column ── */
+        .footer-brand h2 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 40%, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .footer-brand .tagline {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        .footer-info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 17px;
+            color: #bbb;
+        }
+
+        .footer-info-row i {
+            color: #7c3aed;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-info-row a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info-row a:hover {
+            color: #fff;
+        }
+
+        /* Social pills */
+        .social-pills {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-pills a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+        }
+
+        .social-pills a:hover {
+            background: rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+            color: #fff;
+            box-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .social-pills a i {
+            font-size: 16px;
+        }
+
+        /* ── Right column — glass form ── */
+        .footer-form-wrap {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 36px 32px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-form-wrap h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .footer-form-wrap p.form-sub {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 24px;
+        }
+
+        .footer-form-wrap input,
+        .footer-form-wrap textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 16px;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .footer-form-wrap input::placeholder,
+        .footer-form-wrap textarea::placeholder {
+            color: #555;
+        }
+
+        .footer-form-wrap input:focus,
+        .footer-form-wrap textarea:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .footer-form-wrap textarea {
+            height: 110px;
+            resize: vertical;
+        }
+
+        .footer-form-wrap button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .footer-form-wrap button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.6);
+        }
+
+        /* ── Bottom bar ── */
+        .footer-bottom {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 20px 40px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-        }
-        
-        /* Left side personal details */
-        .footer-left {
-            width: 50%;
+            align-items: center;
+            font-size: 14px;
+            color: #444;
         }
 
-        .footer-left p {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .social-icons {
-            margin-top: 10px;
-        }
-
-        .social-icons a {
-            margin-right: 15px;
-            color: white;
-            font-size: 24px;
+        .footer-bottom a {
+            color: #555;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
-        /* Right side form */
-        .footer-right {
-            width: 50%;
-            display: flex;
-            justify-content: flex-end;
-        }
-        
-        .footer-right form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 350px;
-        }
-        
-        .footer-right input, .footer-right textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 100%;
+        .footer-bottom a:hover {
+            color: #9333ea;
         }
 
-        .footer-right textarea {
-            resize: vertical;
-            height: 100px;
+        /* ── Responsive: tablet & mobile (≤768px) ── */
+        @media (max-width: 768px) {
+
+            /* Nav */
+            nav {
+                padding: 10px 20px;
+            }
+
+            nav .logo h1 {
+                font-size: 20px;
+            }
+
+            nav ul {
+                font-size: 20px;
+                gap: 4px;
+            }
+
+            nav ul li {
+                margin-left: 12px;
+            }
+
+            /* Hero text */
+            .main-content h1 {
+                font-size: 46px;
+                padding: 0 16px;
+            }
+
+            .main-content p {
+                font-size: 24px;
+                width: 90%;
+            }
+
+            /* Footer — collapse to single column */
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 24px;
+            }
+
+            footer {
+                padding: 50px 0 0;
+            }
+
+            .footer-brand h2 {
+                font-size: 34px;
+            }
+
+            /* Bottom bar — stack vertically */
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 20px 24px;
+            }
         }
-        
-        .footer-right button {
-            padding: 10px;
-            border: none;
-            background-color: #555;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 0 auto; /* Centers the button */
-            display: block; /* Ensures the button takes full width within its parent */
-            width: 100px; /* Optional: set a specific width for the button */
-        }
-        
-        .footer-right button:hover {
-            background-color: #292888;
+
+        /* ── Responsive: small phones (≤480px) ── */
+        @media (max-width: 480px) {
+
+            nav ul {
+                font-size: 17px;
+            }
+
+            nav ul li {
+                margin-left: 8px;
+            }
+
+            .main-content h1 {
+                font-size: 36px;
+            }
+
+            .main-content p {
+                font-size: 22px;
+            }
+
+            .footer-form-wrap {
+                padding: 24px 18px;
+            }
+
+            .social-pills {
+                gap: 8px;
+            }
+
+            .social-pills a {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
+            .footer-info-row {
+                font-size: 15px;
+                word-break: break-word;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="hero">
+    <div class="hero" id="hero">
+        <canvas id="star-canvas"></canvas>
         <nav>
             <div class="logo">
                 <h1>NR</h1>
@@ -185,42 +432,170 @@
                 <li><a href="Project.html">Projects</a></li>
                 <li><a href="Aboutme.html">About Me</a></li>
                 <li><a href="blog.html">Blog</a></li>
+                <li><a href="casestudies.html">Case Studies</a></li>
             </ul>
         </nav>
 
         <div class="main-content">
-            <div class="photo">  
+            <div class="photo">
             </div>
             <h1>Hi, I am Nicola Rapacchiani</h1>
-            <p>Welcome to my personal website/blog!</p>   
+            <p>Welcome to my personal website/blog!</p>
         </div>
     </div>
 
     <!-- Footer Section -->
     <footer id="contact">
-        <div class="footer-content">
-            <!-- Left side personal details and social icons -->
-            <div class="footer-left">
-                <p><strong>Contact Details:</strong></p>
-                <p>Email: <a href="mailto:nicola@example.com" style="color: white;">rapacchianinicola@gmail.com</a></p>
-                <p>Address: 1 Draycot Road E11 2NU, London, United Kingdom</p>
-                <div class="social-icons">
-                    <a href="https://github.com/Nikrapa" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <div class="footer-inner">
+
+            <!-- Left: brand + contact info + socials -->
+            <div class="footer-brand">
+                <h2>NR</h2>
+                <p class="tagline">Machine Learning &amp; Data Science</p>
+
+                <div class="footer-info-row">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:rapacchianinicola@gmail.com">rapacchianinicola@gmail.com</a>
+                </div>
+                <div class="footer-info-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>1 Draycot Road E11 2NU, London, UK</span>
+                </div>
+
+                <div class="social-pills">
+                    <a href="https://github.com/Nikrapa" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://twitter.com" target="_blank">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
                 </div>
             </div>
 
-            <!-- Right side form -->
-            <div class="footer-right">
+            <!-- Right: glassmorphism contact form -->
+            <div class="footer-form-wrap">
+                <h3>Get in Touch</h3>
+                <p class="form-sub">Drop me a message and I'll get back to you.</p>
                 <form>
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Message" required></textarea>
-                    <button type="submit">Send</button>
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <button type="submit">Send Message &rarr;</button>
                 </form>
             </div>
         </div>
+
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <span>&copy; 2026 Nicola Rapacchiani. All rights reserved.</span>
+            <span>Built with passion in London 🇬🇧</span>
+        </div>
     </footer>
+    <script>
+        (function () {
+            const canvas = document.getElementById('star-canvas');
+            const hero = document.getElementById('hero');
+            const ctx = canvas.getContext('2d');
+
+            // ── Config ──────────────────────────────────────────────
+            const STAR_COUNT = 280;   // extra procedural stars drawn on canvas
+            const BASE_RADIUS = 1.2;   // resting star radius (px)
+            const MAX_RADIUS = 6;     // maximum zoomed radius (px)
+            const EFFECT_RADIUS = 130;   // cursor influence zone (px)
+            const SPRING = 0.08;  // spring-back speed (lower = bouncier)
+            const GLOW_ALPHA = 0.55;  // glow opacity at peak
+            // ────────────────────────────────────────────────────────
+
+            let mouse = { x: -9999, y: -9999 };
+            let stars = [];
+
+            function resize() {
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+                buildStars();
+            }
+
+            function buildStars() {
+                stars = [];
+                for (let i = 0; i < STAR_COUNT; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        baseR: BASE_RADIUS * (0.5 + Math.random() * 1.0),
+                        r: BASE_RADIUS,
+                        brightness: 0.5 + Math.random() * 0.5,   // 0.5–1.0
+                        twinkle: Math.random() * Math.PI * 2,  // phase offset
+                        twinkleSpd: 0.02 + Math.random() * 0.03,
+                    });
+                }
+            }
+
+            function draw(timestamp) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                stars.forEach(s => {
+                    // Twinkle: tiny oscillation in brightness
+                    s.twinkle += s.twinkleSpd;
+                    const twinkleFactor = 0.85 + 0.15 * Math.sin(s.twinkle);
+
+                    // Distance from cursor
+                    const dx = s.x - mouse.x;
+                    const dy = s.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    // Gaussian target scale based on proximity
+                    const influence = Math.exp(-(dist * dist) / (2 * EFFECT_RADIUS * EFFECT_RADIUS));
+                    const targetR = s.baseR + (MAX_RADIUS - s.baseR) * influence;
+
+                    // Spring toward target
+                    s.r += (targetR - s.r) * SPRING;
+
+                    const alpha = s.brightness * twinkleFactor;
+
+                    // Draw glow halo when enlarged
+                    if (s.r > s.baseR + 0.5) {
+                        const glowR = s.r * 3.5;
+                        const glowAlpha = GLOW_ALPHA * influence * alpha;
+                        const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, glowR);
+                        grd.addColorStop(0, `rgba(200, 220, 255, ${glowAlpha})`);
+                        grd.addColorStop(1, 'rgba(200, 220, 255, 0)');
+                        ctx.beginPath();
+                        ctx.arc(s.x, s.y, glowR, 0, Math.PI * 2);
+                        ctx.fillStyle = grd;
+                        ctx.fill();
+                    }
+
+                    // Core star dot
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(draw);
+            }
+
+            // Track mouse relative to the hero element
+            hero.addEventListener('mousemove', e => {
+                const rect = hero.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                mouse.x = -9999;
+                mouse.y = -9999;
+            });
+
+            window.addEventListener('resize', resize);
+
+            resize();
+            requestAnimationFrame(draw);
+        })();
+    </script>
 </body>
+
 </html>
