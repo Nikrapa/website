@@ -3,75 +3,502 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nicola Rapacchiani - Data Scientist</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
+    <title>Blog</title>
+    <style>
+        /* Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Agdasima", sans-serif;
+            background: url('galaxy1.jpg') no-repeat center center/cover fixed;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* ── Nav ── */
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 200;
+        }
+
+        nav .logo h1 {
+            color: white;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            font-size: 30px;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
+            nav ul { font-size: 20px; }
+            nav ul li { margin-left: 12px; }
+        }
+
+        @media (max-width: 480px) {
+            nav ul { font-size: 17px; }
+            nav ul li { margin-left: 8px; }
+        }
+
+        /* Container */
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px 40px;
+        }
+
+        h1.blog-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+
+        /* Blog Post Cards */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .post-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .post-content h3 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .post-meta span {
+            margin-right: 10px;
+        }
+
+        .post-excerpt {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 800px;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            float: right;
+        }
+
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+        /* ── Footer ── */
+        footer {
+            background-color: #000;
+            color: #fff;
+            position: relative;
+            padding: 70px 0 0;
+            font-family: "Agdasima", sans-serif;
+        }
+        footer::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d0d0d, #4f46e5, #9333ea, #4f46e5, #0d0d0d);
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .footer-brand h2 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 40%, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .footer-brand .tagline { font-size: 16px; color: #888; letter-spacing: 1px; margin-bottom: 32px; }
+        .footer-info-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 17px; color: #bbb; }
+        .footer-info-row i { color: #7c3aed; font-size: 18px; width: 20px; text-align: center; }
+        .footer-info-row a { color: #bbb; text-decoration: none; transition: color 0.3s; }
+        .footer-info-row a:hover { color: #fff; }
+        .social-pills { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+        .social-pills a {
+            display: flex; align-items: center; gap: 8px;
+            padding: 9px 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50px; color: #ccc; text-decoration: none; font-size: 15px;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(4px);
+        }
+        .social-pills a:hover {
+            background: rgba(147,51,234,0.2); border-color: #9333ea; color: #fff;
+            box-shadow: 0 0 18px rgba(147,51,234,0.35); transform: translateY(-2px);
+        }
+        .social-pills a i { font-size: 16px; }
+        .footer-form-wrap {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 36px 32px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .footer-form-wrap h3 { font-size: 24px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+        .footer-form-wrap p.form-sub { font-size: 15px; color: #777; margin-bottom: 24px; }
+        .footer-form-wrap input,
+        .footer-form-wrap textarea {
+            width: 100%; background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 12px 16px;
+            color: #fff; font-family: "Agdasima", sans-serif;
+            font-size: 16px; margin-bottom: 14px;
+            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .footer-form-wrap input::placeholder,
+        .footer-form-wrap textarea::placeholder { color: #555; }
+        .footer-form-wrap input:focus,
+        .footer-form-wrap textarea:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124,58,237,0.2); }
+        .footer-form-wrap textarea { height: 110px; resize: vertical; }
+        .footer-form-wrap button {
+            width: 100%; padding: 13px; border: none; border-radius: 8px;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: #fff; font-family: "Agdasima", sans-serif;
+            font-size: 18px; font-weight: 700; letter-spacing: 1px; cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+        }
+        .footer-form-wrap button:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(124,58,237,0.6); }
+        .footer-bottom {
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 20px 40px; max-width: 1100px;
+            margin-left: auto; margin-right: auto;
+            display: flex; justify-content: space-between;
+            align-items: center; font-size: 14px; color: #444;
+        }
+        .footer-bottom a { color: #555; text-decoration: none; transition: color 0.3s; }
+        .footer-bottom a:hover { color: #9333ea; }
+        @media (max-width: 768px) {
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+            footer { padding: 50px 0 0; }
+            .footer-brand h2 { font-size: 34px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; }
+        }
+        @media (max-width: 480px) {
+            .footer-form-wrap { padding: 24px 18px; }
+            .social-pills { gap: 8px; }
+            .social-pills a { padding: 8px 14px; font-size: 14px; }
+            .footer-info-row { font-size: 15px; word-break: break-word; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Nicola Rapacchiani</h1>
-            <p>Data Analyst | Data Scientist | Machine Learning Enthusiast</p>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>
-                I am a Data Analyst/Scientist with expertise in Python, SQL, AWS, Azure, TensorFlow, and PyTorch. 
-                I specialize in building data-driven solutions and machine learning models to extract actionable insights.
-            </p>
-        </div>
-    </section>
+    <!-- Home icon linking back to the index page -->
+    <nav>
+        <div class="logo"><h1><a href="index.html" style="color:white;text-decoration:none;">NR</a></h1></div>
+        <ul>
+            <li><a href="Project.html">Projects</a></li>
+            <li><a href="Aboutme.html">About Me</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="casestudies.html">Case Studies</a></li>
+        </ul>
+    </nav>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projects</h2>
+    <div class="blog-container">
+        <h1 class="blog-title">Blog</h1>
 
-            <div class="project">
-                <h3>Football Game Analysis Using YOLO Models</h3>
-                <p>
-                    Implemented two YOLO models to detect and track players and the ball in football match footage, extracting metrics 
-                    such as player movement, pass detection, and distance covered. The project provided valuable insights into 
-                    player performance and team strategy.
-                </p>
-                <p><strong>Technologies:</strong> Python, YOLO, OpenCV, TensorFlow, Pandas</p>
-                <a href="https://github.com/yourusername/football-yolo-analysis" class="button">View on GitHub</a>
+        <!-- Blog Post Cards -->
+        <div class="post-grid">
+
+            <!-- Blog Post 1 -->
+            <div class="post-card" data-post="1">
+                <div class="post-image">
+                    <img src="neuralnetwork.jpg" alt="Blog Post 1">
+                </div>
+                <div class="post-content">
+                    <h3>A Step-by-Step Guide to Implementing Neural Networks with Python</h3>
+                    <div class="post-meta">
+                        <span>Deep Learning</span> | 
+                        <span>Jan 17, 2024</span> |
+                        <span> min read</span>
+                    </div>
+                    <p class="post-excerpt">Neural networks are the backbone of deep learning, allowing machines to learn complex patterns and make predictions...</p>
+                </div>
             </div>
 
-            <div class="project">
-                <h3>Customer Churn Prediction Model</h3>
-                <p>
-                    Developed a machine learning model to predict customer churn for a telecom company, achieving 87% accuracy. 
-                    The model helped the company target high-risk customers with retention strategies, reducing churn rate by 15%.
-                </p>
-                <p><strong>Technologies:</strong> Python, Pandas, Scikit-learn, TensorFlow</p>
-                <a href="https://github.com/yourusername/customer-churn" class="button">View on GitHub</a>
+            <!-- Blog Post 2 -->
+            <div class="post-card" data-post="2">
+                <div class="post-image">
+                    <img src="nucleardata.jpg" alt="Blog Post 2">
+                </div>
+                <div class="post-content">
+                    <h3>Google turns to nuclear to power AI data centres</h3>
+                    <div class="post-meta">
+                        <span>AI</span> |
+                        <span>Oct 15, 2024</span> |
+                        <span>2 min read</span>
+                    </div>
+                    <p class="post-excerpt">Google has signed a deal to use small nuclear reactors to generate the vast amounts of energy needed to power its AI data centres...</p>
+                </div>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="post-card" data-post="3">
+                <div class="post-image">
+                    <img src="pytorch.png" alt="Blog Post 3">
+                </div>
+                <div class="post-content">
+                    <h3>TensorFlow vs PyTorch: Which Framework is Best for Machine Learning?</h3>
+                    <div class="post-meta">
+                        <span>Deep Learning</span> |
+                        <span>Sep 12, 2024</span> |
+                        <span>6 min read</span>
+                    </div>
+                    <p class="post-excerpt">Two of the most popular frameworks today are TensorFlow and PyTorch. Both are widely used, highly capable, and offer a range of tools...</p>
+                </div>
+            </div>
+
+            <!-- Blog Post 4 -->
+            <div class="post-card" data-post="4">
+                <div class="post-image">
+                    <img src="aihealthcare.jpg" alt="Blog Post 4">
+                </div>
+                <div class="post-content">
+                    <h3>The Future of Artificial Intelligence in Healthcare: Opportunities and Challenges</h3>
+                    <div class="post-meta">
+                        <span>AI</span> |
+                        <span>July 12, 2024</span> |
+                        <span>7 min read</span>
+                    </div>
+                    <p class="post-excerpt">AI is revolutionizing industries across the board, but perhaps no sector stands to benefit as much as healthcare...</p>
+                </div>
+            </div>
+
+            <div class="post-card" data-post="5">
+                <div class="post-image">
+                    <img src="genai.jpg" alt="Blog Post 5">
+                </div>
+                <div class="post-content">
+                    <h3>Real-time data, blockchain, and AI: A game-changer for intelligent apps</h3>
+                    <div class="post-meta">
+                        <span>AI</span> |
+                        <span>July 12, 2024</span> |
+                        <span>7 min read</span>
+                    </div>
+                    <p class="post-excerpt">AI is revolutionizing industries across the board, but perhaps no sector stands to benefit as much as healthcare...</p>
+                </div>
+            </div>
+
+            <div class="post-card" data-post="6">
+                <div class="post-image">
+                    <img src="Datapath.png" alt="Blog Post 6">
+                </div>
+                <div class="post-content">
+                    <h3>My Journey to Becoming a Data Scientist: Challenges and Lessons Learned</h3>
+                    <div class="post-meta">
+                        <span>Data Scientist</span> |
+                        <span>May 01, 2023</span> |
+                        <span>5 min read</span>
+                    </div>
+                    <p class="post-excerpt">AI is revolutionizing industries across the board, but perhaps no sector stands to benefit as much as healthcare...</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>Email: yourname@example.com</p>
-            <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/yourusername">linkedin.com/in/yourusername</a></p>
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-btn">Close</button>
+            <div id="modal-text"></div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Your Name</p>
+    <script>
+        // Get elements
+        const modal = document.getElementById('modal');
+        const modalText = document.getElementById('modal-text');
+        const closeBtn = document.getElementById('close-btn');
+        const blogPosts = document.querySelectorAll('.post-card');
+
+        // Blog post content
+        const blogContent = {
+            };
+
+        // Open modal when a blog post is clicked
+        blogPosts.forEach(post => {
+            post.addEventListener('click', function() {
+                const postId = this.getAttribute('data-post');
+                const selectedPost = blogContent[postId];
+                modalText.innerHTML = `<h3>${selectedPost.title}</h3>${selectedPost.content}`;
+                modal.style.display = 'flex';
+            });
+        });
+
+        
+        // Close the modal
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the content
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h2>NR</h2>
+                <p class="tagline">Machine Learning &amp; Data Science</p>
+                <div class="footer-info-row">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:rapacchianinicola@gmail.com">rapacchianinicola@gmail.com</a>
+                </div>
+                <div class="footer-info-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>1 Draycot Road E11 2NU, London, UK</span>
+                </div>
+                <div class="social-pills">
+                    <a href="https://github.com/Nikrapa" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+            <div class="footer-form-wrap">
+                <h3>Get in Touch</h3>
+                <p class="form-sub">Drop me a message and I'll get back to you.</p>
+                <form>
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                    <button type="submit">Send Message &rarr;</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Nicola Rapacchiani. All rights reserved.</span>
+            <span>Built with passion in London 🇬🇧</span>
         </div>
     </footer>
+
 </body>
 </html>
