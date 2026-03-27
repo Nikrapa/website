@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI & Data Blog – Nicola Rapacchiani. Weekly editorial insights on artificial intelligence, machine learning, data infrastructure and applied AI.">
     <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap" rel="stylesheet">
-    <title>Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Blog – Nicola Rapacchiani</title>
+
     <style>
-        /* Global Styling */
         * {
             margin: 0;
             padding: 0;
@@ -16,11 +20,10 @@
         body {
             font-family: "Agdasima", sans-serif;
             background: url('galaxy1.jpg') no-repeat center center/cover fixed;
-            color: #333;
             min-height: 100vh;
+            color: #333;
         }
 
-        /* Nav */
         nav {
             width: 100%;
             display: flex;
@@ -29,7 +32,6 @@
             padding: 10px 50px;
             position: fixed;
             top: 0;
-            left: 0;
             z-index: 200;
         }
 
@@ -54,130 +56,331 @@
             font-weight: 400;
         }
 
-        @media (max-width: 768px) {
-            nav { padding: 10px 20px; }
-            nav ul { font-size: 20px; }
-            nav ul li { margin-left: 12px; }
-        }
-
-        @media (max-width: 480px) {
-            nav ul { font-size: 17px; }
-            nav ul li { margin-left: 8px; }
-        }
-
-        /* Container */
-        .blog-container {
+        .page-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 40px 50px;
+            padding: 100px 40px 60px;
         }
 
-        h1.blog-title {
+        .page-header {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #ffffff;
+            margin-bottom: 54px;
         }
 
-        /* Blog Post Cards */
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 760px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .section-heading {
+            font-size: 34px;
+            color: #fff;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
         .post-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
         }
 
         .post-card {
             background-color: #fff;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
-            color: inherit;
-            text-decoration: none;
-            cursor: pointer;
-            padding: 22px;
+            min-height: 100%;
         }
 
         .post-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
         }
 
         .post-content {
+            padding: 22px 22px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .post-content h3 {
-            font-size: 30px;
-            margin-bottom: 10px;
+            flex-grow: 1;
         }
 
         .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
             font-size: 14px;
-            color: #777;
-            margin-bottom: 15px;
+            color: #999;
+            margin-bottom: 12px;
         }
 
-        .post-meta span {
-            margin-right: 10px;
+        .post-meta .category {
+            color: #6d28d9;
+            font-weight: 700;
+        }
+
+        .post-meta .separator {
+            color: #bbb;
+        }
+
+        .post-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
         .post-excerpt {
             font-size: 18px;
             color: #555;
-            line-height: 1.6;
-            margin-bottom: 18px;
+            line-height: 1.55;
+            margin-bottom: 22px;
+            flex-grow: 1;
+        }
+
+        .post-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
         }
 
         .post-readmore {
+            border: none;
+            background: none;
+            padding: 0;
+            font-family: "Agdasima", sans-serif;
             font-size: 18px;
-            color: #6d28d9;
             font-weight: 700;
+            color: #4f46e5;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: gap 0.2s ease, color 0.2s ease;
+        }
+
+        .post-readmore:hover {
+            gap: 10px;
+            color: #6d28d9;
+        }
+
+        .post-source-link {
+            display: none; /* moved into modal – kept in DOM for JS href lookup */
         }
 
         .empty-state {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 30px;
+            grid-column: 1 / -1;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color: #444;
+            padding: 60px 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            backdrop-filter: blur(6px);
         }
 
         .empty-state h3 {
-            font-size: 30px;
+            font-size: 28px;
+            color: #fff;
             margin-bottom: 10px;
         }
 
         .empty-state p {
             font-size: 18px;
-            color: #666;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        @media (max-width: 768px) {
-            .post-grid {
-                grid-template-columns: 1fr;
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .pagination button {
+            background: rgba(255, 255, 255, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            backdrop-filter: blur(4px);
+        }
+
+        .pagination button:hover {
+            background: rgba(124, 58, 237, 0.35);
+            border-color: #9333ea;
+            transform: translateY(-2px);
+        }
+
+        .pagination button.active {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            border-color: transparent;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.45);
+        }
+
+        /* Modal source link */
+        .modal-source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #7c3aed;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .modal-source-link:hover {
+            color: #4f46e5;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 780px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 40px 44px;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Footer */
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            font-family: "Agdasima", sans-serif;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #c62828;
+        }
+
+        .modal-box h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            padding-right: 60px;
+            line-height: 1.2;
+        }
+
+        .modal-box .modal-meta {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .modal-box .modal-meta i {
+            color: #7c3aed;
+            margin-right: 4px;
+        }
+
+        .modal-box h3 {
+            font-size: 22px;
+            color: #1a1a1a;
+            margin: 20px 0 8px;
+        }
+
+        .modal-box p {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .modal-box ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .modal-box ul li {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
         footer {
             background-color: #000;
             color: #fff;
             position: relative;
             padding: 70px 0 0;
             font-family: "Agdasima", sans-serif;
+            margin-top: 80px;
         }
 
         footer::before {
             content: '';
             display: block;
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, #0d0d0d, #4f46e5, #9333ea, #4f46e5, #0d0d0d);
         }
@@ -203,107 +406,269 @@
             margin-bottom: 6px;
         }
 
-        .footer-brand .tagline { font-size: 16px; color: #888; letter-spacing: 1px; margin-bottom: 32px; }
-        .footer-info-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 17px; color: #bbb; }
-        .footer-info-row i { color: #7c3aed; font-size: 18px; width: 20px; text-align: center; }
-        .footer-info-row a { color: #bbb; text-decoration: none; transition: color 0.3s; }
-        .footer-info-row a:hover { color: #fff; }
-        .social-pills { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+        .footer-brand .tagline {
+            font-size: 16px;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        .footer-info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 17px;
+            color: #bbb;
+        }
+
+        .footer-info-row i {
+            color: #7c3aed;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-info-row a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info-row a:hover {
+            color: #fff;
+        }
+
+        .social-pills {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
 
         .social-pills a {
-            display: flex; align-items: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             padding: 9px 20px;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 50px; color: #ccc; text-decoration: none; font-size: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 15px;
             transition: all 0.3s ease;
-            background: rgba(255,255,255,0.04); backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
         }
 
         .social-pills a:hover {
-            background: rgba(147,51,234,0.2); border-color: #9333ea; color: #fff;
-            box-shadow: 0 0 18px rgba(147,51,234,0.35); transform: translateY(-2px);
+            background: rgba(147, 51, 234, 0.2);
+            border-color: #9333ea;
+            color: #fff;
+            box-shadow: 0 0 18px rgba(147, 51, 234, 0.35);
+            transform: translateY(-2px);
         }
 
-        .social-pills a i { font-size: 16px; }
+        .social-pills a i {
+            font-size: 16px;
+        }
 
         .footer-form-wrap {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px; padding: 36px 32px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 36px 32px;
             backdrop-filter: blur(8px);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .footer-form-wrap h3 { font-size: 24px; font-weight: 700; margin-bottom: 6px; color: #fff; }
-        .footer-form-wrap p.form-sub { font-size: 15px; color: #777; margin-bottom: 24px; }
+        .footer-form-wrap h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .footer-form-wrap p.form-sub {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 24px;
+        }
 
         .footer-form-wrap input,
         .footer-form-wrap textarea {
-            width: 100%; background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px; padding: 12px 16px;
-            color: #fff; font-family: "Agdasima", sans-serif;
-            font-size: 16px; margin-bottom: 14px;
-            outline: none; transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 16px;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .footer-form-wrap input::placeholder,
-        .footer-form-wrap textarea::placeholder { color: #555; }
+        .footer-form-wrap textarea::placeholder {
+            color: #555;
+        }
 
         .footer-form-wrap input:focus,
         .footer-form-wrap textarea:focus {
             border-color: #7c3aed;
-            box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
         }
 
-        .footer-form-wrap textarea { height: 110px; resize: vertical; }
+        .footer-form-wrap textarea {
+            height: 110px;
+            resize: vertical;
+        }
 
         .footer-form-wrap button {
-            width: 100%; padding: 13px; border: none; border-radius: 8px;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
             background: linear-gradient(135deg, #4f46e5, #9333ea);
-            color: #fff; font-family: "Agdasima", sans-serif;
-            font-size: 18px; font-weight: 700; letter-spacing: 1px; cursor: pointer;
+            color: #fff;
+            font-family: "Agdasima", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
             transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
         }
 
         .footer-form-wrap button:hover {
             opacity: 0.9;
             transform: translateY(-1px);
-            box-shadow: 0 6px 28px rgba(124,58,237,0.6);
+            box-shadow: 0 6px 28px rgba(124, 58, 237, 0.6);
         }
 
         .footer-bottom {
             margin-top: 60px;
-            border-top: 1px solid rgba(255,255,255,0.07);
-            padding: 20px 40px; max-width: 1100px;
-            margin-left: auto; margin-right: auto;
-            display: flex; justify-content: space-between;
-            align-items: center; font-size: 14px; color: #444;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 20px 40px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #444;
         }
 
-        .footer-bottom a { color: #555; text-decoration: none; transition: color 0.3s; }
-        .footer-bottom a:hover { color: #9333ea; }
-
         @media (max-width: 768px) {
-            .footer-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
-            footer { padding: 50px 0 0; }
-            .footer-brand h2 { font-size: 34px; }
-            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 20px 24px; }
+            nav {
+                padding: 10px 20px;
+            }
+
+            nav ul {
+                font-size: 20px;
+            }
+
+            nav ul li {
+                margin-left: 12px;
+            }
+
+            .page-container {
+                padding: 80px 20px 50px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .page-header p {
+                font-size: 17px;
+            }
+
+            .section-heading {
+                font-size: 28px;
+            }
+
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-box {
+                padding: 28px 22px;
+            }
+
+            .modal-box h2 {
+                font-size: 24px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 24px;
+            }
+
+            footer {
+                padding: 50px 0 0;
+            }
+
+            .footer-brand h2 {
+                font-size: 34px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+                padding: 20px 24px;
+            }
         }
 
         @media (max-width: 480px) {
-            .footer-form-wrap { padding: 24px 18px; }
-            .social-pills { gap: 8px; }
-            .social-pills a { padding: 8px 14px; font-size: 14px; }
-            .footer-info-row { font-size: 15px; word-break: break-word; }
+            nav ul {
+                font-size: 17px;
+            }
+
+            nav ul li {
+                margin-left: 8px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .post-content h3 {
+                font-size: 22px;
+            }
+
+            .footer-form-wrap {
+                padding: 24px 18px;
+            }
+
+            .social-pills {
+                gap: 8px;
+            }
+
+            .social-pills a {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
+            .footer-info-row {
+                font-size: 15px;
+                word-break: break-word;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav>
-        <div class="logo"><h1><a href="index.html" style="color:white;text-decoration:none;">NR</a></h1></div>
+        <div class="logo">
+            <h1><a href="index.html" style="color:white;text-decoration:none;">NR</a></h1>
+        </div>
         <ul>
             <li><a href="Project.html">Projects</a></li>
             <li><a href="Aboutme.html">About Me</a></li>
@@ -312,40 +677,146 @@
         </ul>
     </nav>
 
-    <div class="blog-container">
-        <h1 class="blog-title">Blog</h1>
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Latest News AI and Tech</h1>
+            <p>
+                Weekly editorial insights on artificial intelligence, machine learning, data infrastructure,
+                accelerated computing and the trends shaping the future of data-driven systems.
+            </p>
+        </div>
+
+        <h2 class="section-heading">Latest Weekly News</h2>
 
         <!-- AUTO-NEWS-START -->
-    <div class="post-grid">
-            <a class="post-card auto-news-card" href="https://openai.com/index/safety-bug-bounty" target="_blank" rel="noopener noreferrer">
+        <div class="post-grid">
+            <article class="post-card auto-news-card" data-news-id="news_1">
                 <div class="post-content">
                     <div class="post-meta">
-                        <span class="category">AI</span>
+                        <span class="category">Machine Learning</span>
                         <span class="separator">|</span>
                         <span>1774396</span>
                         <span class="separator">|</span>
                         <span>1 min read</span>
                     </div>
                     <h3>Introducing the OpenAI Safety Bug Bounty program</h3>
-                    <p class="post-excerpt">OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.</p>
-                    <span class="post-readmore">Read article →</span>
+                    <p class="post-excerpt">OpenAI has launched a Safety Bug Bounty program focused on uncovering AI abuse patterns and practical model safety risks.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_1">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/safety-bug-bounty" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
                 </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment" target="_blank" rel="noopener noreferrer">
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_2">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Machine Learning</span>
+                        <span class="separator">|</span>
+                        <span>1774524</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Mistral releases a new open source model for speech generation</h3>
+                    <p class="post-excerpt">Mistral has launched an open-source speech generation model aimed at enterprise voice agents and customer engagement use cases.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_2">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/mistral-releases-a-new-open-source-model-for-speech-generation/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_3">
                 <div class="post-content">
                     <div class="post-meta">
                         <span class="category">AI</span>
                         <span class="separator">|</span>
-                        <span>1773914</span>
+                        <span>1774457</span>
                         <span class="separator">|</span>
                         <span>1 min read</span>
                     </div>
-                    <h3>How we monitor internal coding agents for misalignment</h3>
-                    <p class="post-excerpt">How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents—analyzing real-world deployments to detect risks and strengthen AI safety safeguards.</p>
-                    <span class="post-readmore">Read article →</span>
+                    <h3>Protecting people from harmful manipulation</h3>
+                    <p class="post-excerpt">Google DeepMind outlines harmful manipulation risks in AI and introduces new safety measures across sensitive areas like health and finance.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_3">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://deepmind.google/blog/protecting-people-from-harmful-manipulation/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
                 </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://techcrunch.com/2026/03/25/google-launches-lyria-3-pro-music-generation-model/" target="_blank" rel="noopener noreferrer">
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_4">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Machine Learning</span>
+                        <span class="separator">|</span>
+                        <span>1774278</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>How Autonomous AI Agents Become Secure by Design With NVIDIA OpenShell</h3>
+                    <p class="post-excerpt">NVIDIA presents OpenShell as a security-by-design approach for autonomous AI agents that can act across tools, code, and enterprise workflows.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_4">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://blogs.nvidia.com/blog/secure-autonomous-ai-agents-openshell/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_5">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774626</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>VCs are betting billions on AI’s next wave, so why is OpenAI killing Sora?</h3>
+                    <p class="post-excerpt">AI investment is accelerating, but resistance to data center expansion shows the next phase of AI will be shaped by real-world limits.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_5">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/podcast/vcs-are-betting-billions-on-ais-next-wave-so-why-is-openai-killing-sora/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_6">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774618</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>OpenAI shuts down Sora while Meta gets shut out in court</h3>
+                    <p class="post-excerpt">AI’s expansion is meeting real-world resistance, from land use disputes to courtroom setbacks for major tech players.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_6">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/video/openai-shuts-down-sora-while-meta-gets-shut-out-in-court/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_7">
                 <div class="post-content">
                     <div class="post-meta">
                         <span class="category">Machine Learning</span>
@@ -355,67 +826,165 @@
                         <span>1 min read</span>
                     </div>
                     <h3>Google launches Lyria 3 Pro music generation model</h3>
-                    <p class="post-excerpt">Google is launching Lyria 3 Pro, an upgraded music model that generates longer, more customizable tracks, as it expands AI music tools across Gemini, enterprise products, and ot...</p>
-                    <span class="post-readmore">Read article →</span>
-                </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://techcrunch.com/2026/03/24/anthropic-hands-claude-code-more-control-but-keeps-it-on-a-leash/" target="_blank" rel="noopener noreferrer">
-                <div class="post-content">
-                    <div class="post-meta">
-                        <span class="category">AI</span>
-                        <span class="separator">|</span>
-                        <span>1774386</span>
-                        <span class="separator">|</span>
-                        <span>1 min read</span>
+                    <p class="post-excerpt">Google has introduced Lyria 3 Pro, a new music generation model focused on longer tracks and more control across its AI products.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_7">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/25/google-launches-lyria-3-pro-music-generation-model/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
                     </div>
-                    <h3>Anthropic hands Claude Code more control, but keeps it on a leash</h3>
-                    <p class="post-excerpt">Anthropic’s new auto mode for Claude Code lets AI execute tasks with fewer approvals, reflecting a broader shift toward more autonomous tools that balance speed with safety thro...</p>
-                    <span class="post-readmore">Read article →</span>
                 </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://techcrunch.com/2026/03/24/openais-plans-to-make-chatgpt-more-like-amazon-arent-going-so-well/" target="_blank" rel="noopener noreferrer">
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_8">
                 <div class="post-content">
                     <div class="post-meta">
-                        <span class="category">AI</span>
-                        <span class="separator">|</span>
-                        <span>1774380</span>
-                        <span class="separator">|</span>
-                        <span>1 min read</span>
-                    </div>
-                    <h3>OpenAI’s plans to make ChatGPT more like Amazon aren’t going so well</h3>
-                    <p class="post-excerpt">OpenAI says it&#x27;s moving away from Instant Checkout, which allowed users to buy items directly through the ChatGPT interface.</p>
-                    <span class="post-readmore">Read article →</span>
-                </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://techcrunch.com/2026/03/24/google-tv-new-gemini-features-keep-fans-updated-on-sports-teams-deep-dives-visual-answers/" target="_blank" rel="noopener noreferrer">
-                <div class="post-content">
-                    <div class="post-meta">
-                        <span class="category">AI</span>
-                        <span class="separator">|</span>
-                        <span>1774379</span>
-                        <span class="separator">|</span>
-                        <span>1 min read</span>
-                    </div>
-                    <h3>Google TV’s new Gemini features keep fans updated on sports teams and more</h3>
-                    <p class="post-excerpt">Three Gemini-powered features are coming to your Google TV. This includes visual responses, deep dives, and sports briefs.</p>
-                    <span class="post-readmore">Read article →</span>
-                </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://openai.com/index/powering-product-discovery-in-chatgpt" target="_blank" rel="noopener noreferrer">
-                <div class="post-content">
-                    <div class="post-meta">
-                        <span class="category">AI</span>
+                        <span class="category">Machine Learning</span>
                         <span class="separator">|</span>
                         <span>1774342</span>
                         <span class="separator">|</span>
                         <span>1 min read</span>
                     </div>
                     <h3>Powering product discovery in ChatGPT</h3>
-                    <p class="post-excerpt">ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.</p>
-                    <span class="post-readmore">Read article →</span>
+                    <p class="post-excerpt">ChatGPT is adding richer shopping and product comparison features, with merchant integration designed to improve discovery inside the chat experience.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_8">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/powering-product-discovery-in-chatgpt" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
                 </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://huggingface.co/blog/ServiceNow-AI/eva" target="_blank" rel="noopener noreferrer">
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_9">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Business</span>
+                        <span class="separator">|</span>
+                        <span>1774550</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>OpenAI abandons yet another side quest: ChatGPT’s erotic mode</h3>
+                    <p class="post-excerpt">OpenAI appears to be dropping ChatGPT’s erotic mode, the latest sign it is trimming side projects and narrowing focus.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_9">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/openai-abandons-yet-another-side-quest-chatgpts-erotic-mode/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_10">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774568</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>You can now transfer your chats and personal information from other chatbots directly into Gemini</h3>
+                    <p class="post-excerpt">Google is adding tools to move chats and personal data from other chatbots into Gemini, making switching easier.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_10">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/you-can-now-transfer-your-chats-and-personal-information-from-other-chatbots-directly-into-gemini/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_11">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Machine Learning</span>
+                        <span class="separator">|</span>
+                        <span>1774538</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Gemini 3.1 Flash Live: Making audio AI more natural and reliable</h3>
+                    <p class="post-excerpt">Google DeepMind says Gemini 3.1 Flash Live improves voice AI with lower latency and better precision for more natural audio interactions.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_11">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_12">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Business</span>
+                        <span class="separator">|</span>
+                        <span>1774532</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Conntour raises $7M from General Catalyst, YC to build an AI search engine for security video systems</h3>
+                    <p class="post-excerpt">Conntour raised $7M to build AI search for security video, letting teams query camera feeds in natural language.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_12">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/conntour-raises-7m-from-general-catalyst-yc-to-build-an-ai-search-engine-for-security-video-systems/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_13">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Machine Learning</span>
+                        <span class="separator">|</span>
+                        <span>1774432</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Inside our approach to the Model Spec</h3>
+                    <p class="post-excerpt">OpenAI outlines how its Model Spec guides AI behavior, aiming to balance safety, user autonomy, and accountability.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_13">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/our-approach-to-the-model-spec" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_14">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774350</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Helping developers build safer AI experiences for teens</h3>
+                    <p class="post-excerpt">OpenAI has introduced teen safety policies for developers using gpt-oss-safeguard to better manage age-specific risks in AI applications.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_14">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/teen-safety-policies-gpt-oss-safeguard" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_15">
                 <div class="post-content">
                     <div class="post-meta">
                         <span class="category">Machine Learning</span>
@@ -425,47 +994,432 @@
                         <span>1 min read</span>
                     </div>
                     <h3>A New Framework for Evaluating Voice Agents (EVA)</h3>
-                    <p class="post-excerpt"></p>
-                    <span class="post-readmore">Read article →</span>
+                    <p class="post-excerpt">Hugging Face highlights EVA, a new framework designed to evaluate voice agents in a more structured and practical way.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_15">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://huggingface.co/blog/ServiceNow-AI/eva" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
                 </div>
-            </a>
-            <a class="post-card auto-news-card" href="https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/" target="_blank" rel="noopener noreferrer">
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_16">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774454</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Lyria 3 Pro: Create longer tracks in more</h3>
+                    <p class="post-excerpt">Google DeepMind introduced Lyria 3 Pro, focused on longer music tracks with stronger structural awareness and broader product integration.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_16">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_17">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774342</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Update on the OpenAI Foundation</h3>
+                    <p class="post-excerpt">OpenAI says its foundation will invest at least $1 billion in health, economic opportunity, AI resilience, and community programs.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_17">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/update-on-the-openai-foundation" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_18">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774339</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Advancing Open Source AI, NVIDIA Donates Dynamic Resource Allocation Driver for GPUs to Kubernetes Community</h3>
+                    <p class="post-excerpt">NVIDIA is donating a dynamic GPU resource allocation driver to Kubernetes, aiming to improve how AI infrastructure is managed in open source environments.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_18">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://blogs.nvidia.com/blog/nvidia-at-kubecon-2026/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_19">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774549</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Data centers get ready — the Senate wants to see your power bills</h3>
+                    <p class="post-excerpt">Two senators want closer reporting on how data centers consume electricity and what that means for grid reliability and energy planning.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_19">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/data-centers-get-ready-the-senate-wants-to-see-your-power-bills/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_20">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774537</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Into the Omniverse: NVIDIA GTC Showcases Virtual Worlds Powering the Physical AI Era</h3>
+                    <p class="post-excerpt">NVIDIA GTC highlighted how Omniverse, OpenUSD and virtual worlds are becoming core tools for scaling physical AI across robots, vehicles and factories.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_20">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://blogs.nvidia.com/blog/gtc-2026-virtual-worlds-physical-ai/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_21">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774526</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>A ‘pound of flesh’ from data centers: one senator’s answer to AI job losses</h3>
+                    <p class="post-excerpt">As AI job-loss fears rise, Sen. Mark Warner proposes taxing data centers to help workers manage the transition.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_21">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/a-pound-of-flesh-from-data-centers-one-senators-answer-to-ai-job-losses/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_22">
                 <div class="post-content">
                     <div class="post-meta">
                         <span class="category">Business</span>
                         <span class="separator">|</span>
-                        <span>1774450</span>
+                        <span>1774485</span>
                         <span class="separator">|</span>
                         <span>1 min read</span>
                     </div>
-                    <h3>Granola raises $125M, hits $1.5B valuation as it expands from meeting notetaker to enterprise AI app</h3>
-                    <p class="post-excerpt">Granola&#x27;s valuation jumped from $250 million to $1.5 billion with this round, and it has added more support for AI agents after users previously complained.</p>
-                    <span class="post-readmore">Read article →</span>
+                    <h3>Mercor competitor Deccan AI raises $25M, sources experts from India</h3>
+                    <p class="post-excerpt">Deccan AI raised $25M by focusing on India-based experts, betting that tighter workforce control can improve quality in AI training.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_22">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/25/deccan-ai-raises-25m-as-ai-training-push-relies-on-india-based-workforce/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
                 </div>
-            </a>
-    </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_23">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774475</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>The AI skills gap is here, says AI company, and power users are pulling ahead</h3>
+                    <p class="post-excerpt">Anthropic says AI is not replacing jobs yet, but skilled users are already gaining an advantage that could widen workforce inequality.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_23">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/25/the-ai-skills-gap-is-here-says-ai-company-and-power-users-are-pulling-ahead/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_24">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774465</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>The Future of AI Is Open and Proprietary</h3>
+                    <p class="post-excerpt">NVIDIA argues AI’s future will rely on a mixed ecosystem of open and proprietary models, from broad platforms to specialized tools.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_24">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://blogs.nvidia.com/blog/ai-future-open-and-proprietary/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_25">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Tech</span>
+                        <span class="separator">|</span>
+                        <span>1774458</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Bernie Sanders and AOC propose a ban on data center construction</h3>
+                    <p class="post-excerpt">Sanders and Ocasio-Cortez want to pause new data center construction until Congress sets broader AI rules.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_25">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/25/bernie-sanders-and-aoc-propose-a-ban-on-data-center-construction/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_26">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774574</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Anthropic wins injunction against Trump administration over Defense Department saga</h3>
+                    <p class="post-excerpt">A federal judge ordered the Trump administration to reverse recent restrictions imposed on Anthropic in a Defense Department dispute.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_26">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/26/anthropic-wins-injunction-against-trump-administration-over-defense-department-saga/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_27">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">AI</span>
+                        <span class="separator">|</span>
+                        <span>1774471</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Google unveils TurboQuant, a new AI memory compression algorithm — and yes, the internet is calling it ‘Pied Piper’</h3>
+                    <p class="post-excerpt">Google’s new TurboQuant algorithm could cut AI working memory by up to 6x, but for now it remains an early-stage research project.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_27">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://techcrunch.com/2026/03/25/google-turboquant-ai-memory-compression-silicon-valley-pied-piper/" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+            <article class="post-card auto-news-card" data-news-id="news_28">
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span class="category">Machine Learning</span>
+                        <span class="separator">|</span>
+                        <span>1774224</span>
+                        <span class="separator">|</span>
+                        <span>1 min read</span>
+                    </div>
+                    <h3>Creating with Sora Safely</h3>
+                    <p class="post-excerpt">OpenAI says Sora 2 and its creation app were designed with safety built in, aiming to address both model and platform risks from the start.</p>
+                    <div class="post-actions">
+                        <button class="post-readmore auto-news-open" type="button" data-news-id="news_28">
+                            Read article →
+                        </button>
+                        <a class="post-source-link" href="https://openai.com/index/creating-with-sora-safely" target="_blank" rel="noopener noreferrer">
+                            Read original source ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="pagination" id="news-pagination"></div>
+        <script>
+            window.newsModalData = {"news_1": {"title": "Introducing the OpenAI Safety Bug Bounty program", "source": "OpenAI Blog", "date": "1774396", "intro": "OpenAI has introduced a Safety Bug Bounty program aimed at finding and reporting safety weaknesses in AI systems. The focus includes abuse-related risks such as agentic vulnerabilities, prompt injection, and data exfiltration.", "why_it_matters": "This matters because AI security is no longer limited to classic software bugs. As models become more capable and integrated into tools and workflows, identifying misuse paths and safety failures early becomes a practical requirement, not just a research concern.", "takeaways": ["The program is designed to surface AI-specific safety issues, not only traditional technical vulnerabilities.", "OpenAI is explicitly targeting risks linked to misuse, including prompt injection and data exfiltration.", "It signals a more operational approach to model safety, with external reporting built into the process."], "my_take": "This is a sensible step. In practice, many of the most important AI risks appear at the boundary between model behavior, system design, and user interaction. Treating those issues with the discipline of a bounty program helps move safety from principle to process."}, "news_2": {"title": "Mistral releases a new open source model for speech generation", "source": "TechCrunch AI", "date": "1774524", "intro": "Mistral has released a new open-source model for speech generation. The product is positioned for enterprise use cases such as voice agents for sales and customer engagement.", "why_it_matters": "This expands Mistral’s reach beyond text-based AI and into a fast-growing part of the market. For companies building voice interfaces, it adds another option alongside providers like ElevenLabs, Deepgram, and OpenAI.", "takeaways": ["Mistral is entering the speech generation market with an open-source model.", "The model is aimed at enterprise voice agents, especially in sales and customer engagement.", "Its launch places Mistral in more direct competition with established voice AI vendors."], "my_take": "This is a practical move from Mistral. Voice is becoming a real interface for customer operations, and open-source options can matter for teams that want more flexibility, control, or custom deployment paths."}, "news_3": {"title": "Protecting people from harmful manipulation", "source": "Google DeepMind Blog", "date": "1774457", "intro": "Google DeepMind has published new work on the risk of harmful manipulation by AI systems, focusing on sensitive contexts such as health and finance. The update highlights ongoing research and the introduction of additional safety measures designed to reduce these risks.", "why_it_matters": "Manipulation is a practical safety issue, not just a theoretical one. As AI tools become more persuasive and more widely used in high-stakes settings, stronger safeguards are needed to prevent systems from steering people toward harmful decisions or exploiting vulnerability.", "takeaways": ["Google DeepMind is studying how AI could be used in manipulative or harmful ways.", "The research pays particular attention to high-impact domains including health and finance.", "The company says this work is informing new safety measures to better protect users."], "my_take": "This is the right area to focus on. In practice, the real test for AI safety is not only whether a model is accurate, but whether it can influence people in ways they do not fully understand, especially in moments of uncertainty or trust."}, "news_4": {"title": "How Autonomous AI Agents Become Secure by Design With NVIDIA OpenShell", "source": "NVIDIA Blog", "date": "1774278", "intro": "NVIDIA says autonomous AI agents are moving beyond answering questions and into taking actions across enterprise environments. In this context, its OpenShell approach focuses on making these systems secure by design as they read files, use tools, run code, and execute workflows.", "why_it_matters": "As agents gain the ability to act inside business systems, application-layer risk increases. Security can no longer be treated as an add-on, because these systems may continuously extend their own capabilities while interacting with sensitive data, tools, and processes.", "takeaways": ["Autonomous agents are evolving from reasoning systems into action-taking systems.", "Their access to files, tools, code execution, and workflows creates new security exposure at the application layer.", "NVIDIA positions OpenShell as a framework for building agent security in from the start, not after deployment."], "my_take": "This is a useful shift in framing. If AI agents are allowed to operate inside real business processes, their security model has to be designed as part of the product architecture. The practical question is not whether agents are powerful, but whether their permissions, controls, and behavior are governed well enough for production use."}, "news_5": {"title": "VCs are betting billions on AI’s next wave, so why is OpenAI killing Sora?", "source": "TechCrunch AI", "date": "1774626", "intro": "TechCrunch highlights a growing tension in AI: investors are backing the next wave of growth, while communities are pushing back as infrastructure moves into physical spaces. One example is a Kentucky landowner who rejected a $26 million offer from an AI company seeking to build a data center on her land.", "why_it_matters": "AI progress is no longer only about models and funding rounds. It increasingly depends on land use, energy, zoning, and local consent. That makes deployment slower, more political, and more constrained than many headlines suggest.", "takeaways": ["AI infrastructure is becoming a real-world issue, not just a software story.", "Local opposition can complicate or delay large data center plans, even when major capital is available.", "The next stage of AI growth will depend as much on execution and public acceptance as on investment."], "my_take": "This is a useful reminder that scaling AI is not just a technical or financial challenge. The harder part may be turning ambition into infrastructure that communities, regulators, and local systems are willing to support."}, "news_6": {"title": "OpenAI shuts down Sora while Meta gets shut out in court", "source": "TechCrunch AI", "date": "1774618", "intro": "This TechCrunch AI update highlights a broader shift around AI growth: expansion is no longer just a technical story. In one example, an AI company’s effort to build data center infrastructure in Kentucky met resistance from a local landowner, showing how physical buildout is colliding with local concerns and legal processes.", "why_it_matters": "As AI moves from software into energy, land, and infrastructure, progress depends less on product ambition alone and more on public acceptance, zoning, and regulation. For companies, that makes execution more complex and more exposed to legal, political, and community constraints.", "takeaways": ["AI infrastructure plans are increasingly running into local opposition in the physical world.", "Land use, rezoning, and legal approval are becoming practical bottlenecks for AI expansion.", "The next phase of AI competition will be shaped not just by models, but by infrastructure and governance."], "my_take": "This is a useful reminder that AI strategy does not stop at the model layer. The closer AI gets to land, power, and public policy, the more success depends on navigating institutions, communities, and real operational trade-offs."}, "news_7": {"title": "Google launches Lyria 3 Pro music generation model", "source": "TechCrunch AI", "date": "1774456", "intro": "Google has launched Lyria 3 Pro, an updated music generation model designed to create longer and more customizable tracks. The release is part of a broader expansion of Google’s AI music capabilities across Gemini, enterprise offerings, and other services.", "why_it_matters": "This matters because it shows Google is moving AI music generation from a standalone experiment into a more integrated product capability. For users and businesses, the practical value is greater control and easier access within tools they may already use.", "takeaways": ["Lyria 3 Pro is positioned as an upgraded music generation model.", "Google says the model can produce longer and more customizable tracks.", "The launch fits into a wider rollout of AI music features across Gemini and enterprise products."], "my_take": "The interesting part here is not just the model itself, but the distribution strategy. When a capability like music generation is embedded across consumer and enterprise products, adoption becomes more likely because it is tied to existing workflows rather than a separate demo."}, "news_8": {"title": "Powering product discovery in ChatGPT", "source": "OpenAI Blog", "date": "1774342", "intro": "OpenAI is expanding ChatGPT’s shopping experience with richer, more visual product discovery. The update is built around the Agentic Commerce Protocol and is designed to support browsing, side-by-side comparisons, and tighter merchant integration within ChatGPT.", "why_it_matters": "This matters because product search is moving closer to conversational interfaces. For users, that can make discovery and comparison more direct. For merchants, it signals that product visibility may increasingly depend on how well their catalog and commerce systems connect to AI-driven environments.", "takeaways": ["ChatGPT is introducing a more visually immersive shopping and product discovery experience.", "The update includes side-by-side product comparisons to help users evaluate options inside the chat.", "Merchant integration through the Agentic Commerce Protocol points to a more structured link between AI assistants and commerce systems."], "my_take": "The practical point is not that ChatGPT becomes an online store, but that it becomes a stronger discovery layer. If this direction continues, brands will need to think beyond traditional search and make sure product data, availability, and merchant information are ready for AI-native interfaces."}, "news_9": {"title": "OpenAI abandons yet another side quest: ChatGPT’s erotic mode", "source": "TechCrunch AI", "date": "1774550", "intro": "OpenAI has reportedly abandoned work on ChatGPT’s erotic mode, according to TechCrunch. The move is presented as part of a broader pattern, with the company stepping back from several side projects over the past week.", "why_it_matters": "In practice, this suggests OpenAI is prioritising focus over experimentation at the edges of its product roadmap. For users, partners, and competitors, it is another signal that not every high-profile AI feature will make it into long-term strategy.", "takeaways": ["OpenAI is reportedly dropping ChatGPT’s erotic mode.", "TechCrunch frames this as one of several side projects the company has ditched recently.", "The decision points to tighter prioritisation around which AI features are worth maintaining."], "my_take": "This is less about one specific feature and more about execution discipline. AI companies are under pressure to ship quickly, but they also need to decide what fits the core product, what creates distraction, and what is simply not worth carrying forward."}, "news_10": {"title": "You can now transfer your chats and personal information from other chatbots directly into Gemini", "source": "TechCrunch AI", "date": "1774568", "intro": "Google is rolling out new switching tools for Gemini that let users transfer chats and personal information from other chatbots directly into its platform. The move is designed to reduce friction for people who want to change AI assistants without starting from zero.", "why_it_matters": "For users, one of the biggest barriers to changing chatbot platforms is losing past context, preferences, and saved information. By making that transfer easier, Google is addressing a practical adoption problem rather than just adding another feature.", "takeaways": ["Google is introducing switching tools for Gemini.", "The tools are meant to transfer chats and personal information from other chatbots.", "The main goal is to make moving to Gemini simpler and less disruptive."], "my_take": "This is a practical product decision. In AI, convenience often matters as much as model quality, and portability can influence which tools people keep using. Making switching easier is not flashy, but it directly targets a real user pain point."}, "news_11": {"title": "Gemini 3.1 Flash Live: Making audio AI more natural and reliable", "source": "Google DeepMind Blog", "date": "1774538", "intro": "Google DeepMind has introduced Gemini 3.1 Flash Live, a voice model designed to make audio interactions feel more natural, fluid and reliable. The update focuses on improved precision and lower latency in live voice exchanges.", "why_it_matters": "In practice, voice systems are only useful when they respond quickly and interpret speech accurately. Better latency and precision can make conversations smoother, reduce friction and improve trust in audio-based AI experiences.", "takeaways": ["Gemini 3.1 Flash Live is positioned as an update focused on live voice interaction.", "Google DeepMind highlights two core improvements: lower latency and better precision.", "The goal is to make audio AI feel more natural, fluid and dependable in real use."], "my_take": "This is a sensible direction. In voice AI, small gains in speed and accuracy often matter more than headline features, because they directly affect whether an interaction feels usable or frustrating. The real test will be how consistently these improvements hold up in everyday conditions."}, "news_12": {"title": "Conntour raises $7M from General Catalyst, YC to build an AI search engine for security video systems", "source": "TechCrunch AI", "date": "1774532", "intro": "Conntour has raised $7 million from General Catalyst and Y Combinator to develop an AI search engine for security video systems. Its product uses AI models so security teams can search camera feeds with natural language to find objects, people, or specific situations.", "why_it_matters": "Security video is only useful if teams can actually find what they need quickly. A natural-language search layer could reduce the time and manual effort required to review footage, making existing camera systems more practical for real operational use.", "takeaways": ["Conntour is building an AI search engine focused on security video systems.", "The platform lets security teams query camera feeds using natural language.", "The company raised $7 million from General Catalyst and Y Combinator."], "my_take": "This is a practical AI application: not replacing the camera system, but making the data inside it easier to use. The key question will be whether natural-language search is accurate and reliable enough for day-to-day security workflows."}, "news_13": {"title": "Inside our approach to the Model Spec", "source": "OpenAI Blog", "date": "1774432", "intro": "OpenAI has explained its approach to the Model Spec, a public framework designed to guide how its models behave. The goal is to make decisions around safety, user freedom, and responsibility more transparent as AI systems become more capable.", "why_it_matters": "For people and organizations using AI, clearer behavioral rules matter because they shape how models respond, where limits apply, and how trade-offs are handled. A public framework also makes it easier to evaluate consistency and accountability over time.", "takeaways": ["The Model Spec is presented as a public framework for expected model behavior.", "OpenAI positions it as a way to balance safety, user freedom, and accountability.", "The update reflects a broader need for clearer governance as AI capabilities advance."], "my_take": "This is a useful direction. In practice, AI adoption depends not only on model quality, but on how clearly behavior is defined and communicated. A public specification does not solve every governance issue, but it is a meaningful step toward making AI systems easier to trust, assess, and use responsibly."}, "news_14": {"title": "Helping developers build safer AI experiences for teens", "source": "OpenAI Blog", "date": "1774350", "intro": "OpenAI has released prompt-based teen safety policies designed for developers building with gpt-oss-safeguard. The goal is to help teams address age-specific risks and create AI experiences that are safer for teenage users.", "why_it_matters": "For developers, this adds a more practical layer to AI safety work. Teen users can face different risks than adults, so having policies tailored to their needs can support more consistent moderation and safer product design from the start.", "takeaways": ["OpenAI is providing teen-focused safety policies for developers.", "The policies are prompt-based and intended for use with gpt-oss-safeguard.", "The focus is on moderating age-specific risks in AI systems."], "my_take": "This is a useful step because safety often becomes more concrete when it is translated into tools developers can actually apply. The important part now is not just publishing policies, but making them part of product decisions, testing, and ongoing moderation."}, "news_15": {"title": "A New Framework for Evaluating Voice Agents (EVA)", "source": "Hugging Face Blog", "date": "1774317", "intro": "Hugging Face has presented EVA, a new framework for evaluating voice agents. The announcement points to a more systematic approach for assessing how these systems perform, with a focus on making evaluation clearer and more consistent.", "why_it_matters": "Voice agents are moving into real products and customer interactions, so evaluation can no longer be informal or fragmented. A framework like EVA matters because teams need shared methods to compare systems, identify weaknesses, and improve reliability before deployment.", "takeaways": ["EVA is introduced as a dedicated framework for evaluating voice agents.", "The goal is to bring more structure and consistency to how voice systems are assessed.", "For teams building voice products, better evaluation supports more practical and reliable iteration."], "my_take": "This is the kind of work the voice AI space needs. Progress in models is useful, but without clear evaluation, it is hard to know what actually works in production. A practical framework can help teams make better decisions with less guesswork."}, "news_16": {"title": "Lyria 3 Pro: Create longer tracks in more", "source": "Google DeepMind Blog", "date": "1774454", "intro": "Google DeepMind has introduced Lyria 3 Pro, a new version of its music generation model designed to create longer tracks with structural awareness. The company is also expanding Lyria across more Google products and surfaces.", "why_it_matters": "For creative workflows, longer and more coherent generated music is more useful than short disconnected outputs. Bringing Lyria into more Google environments also suggests a clearer path from research model to practical product experience.", "takeaways": ["Lyria 3 Pro is positioned around generating longer music tracks.", "A key focus is structural awareness, which points to more coherent musical output.", "Google is extending Lyria beyond the lab into more products and user touchpoints."], "my_take": "This is a practical update rather than a flashy one. In generative music, duration and structure are what make outputs usable, so this move looks less about novelty and more about making the system fit real creative tasks."}, "news_17": {"title": "Update on the OpenAI Foundation", "source": "OpenAI Blog", "date": "1774342", "intro": "OpenAI has outlined an update on the OpenAI Foundation, stating that it plans to invest at least $1 billion across four areas: curing diseases, expanding economic opportunity, strengthening AI resilience, and supporting community programs.", "why_it_matters": "This is notable because it signals a broader use of AI-linked capital beyond product development. In practice, the impact will depend on how these commitments are translated into concrete programs, partnerships, and measurable outcomes.", "takeaways": ["The OpenAI Foundation says it plans to invest at least $1 billion.", "The funding focus covers disease cures, economic opportunity, AI resilience, and community programs.", "The announcement sets direction, but the real significance will come from execution and results."], "my_take": "This is a meaningful statement of intent, especially because the focus areas are practical and socially relevant. The key question now is not the headline amount, but how the foundation allocates capital, chooses partners, and shows evidence of real-world value over time."}, "news_18": {"title": "Advancing Open Source AI, NVIDIA Donates Dynamic Resource Allocation Driver for GPUs to Kubernetes Community", "source": "NVIDIA Blog", "date": "1774339", "intro": "NVIDIA announced it is donating a dynamic resource allocation driver for GPUs to the Kubernetes community. The move is designed to help developers and enterprises manage AI workloads on Kubernetes with more transparency and operational efficiency.", "why_it_matters": "AI has become a core workload for many organizations, and much of it now runs on Kubernetes. Improving how GPU resources are allocated in an open source, standardized environment can make AI infrastructure easier to manage and better aligned with real operational needs.", "takeaways": ["NVIDIA is contributing a GPU dynamic resource allocation driver to the Kubernetes ecosystem.", "The focus is on supporting AI workloads with greater transparency and efficiency.", "The announcement reflects how central Kubernetes has become for managing enterprise AI infrastructure."], "my_take": "This is a practical contribution, not just a branding exercise. If GPU allocation becomes easier to handle inside Kubernetes, teams can reduce friction in day-to-day operations and build AI platforms on more open and reusable foundations."}, "news_19": {"title": "Data centers get ready — the Senate wants to see your power bills", "source": "TechCrunch AI", "date": "1774549", "intro": "Senators Josh Hawley and Elizabeth Warren are asking the Energy Information Administration to collect more detailed information on how data centers use power and how that demand affects the electricity grid.", "why_it_matters": "As AI and cloud infrastructure expand, data center energy use is becoming a more visible operational and policy issue. Better data could help policymakers, utilities, and operators plan capacity, assess grid pressure, and make trade-offs more transparent.", "takeaways": ["The request focuses on improving visibility into data center electricity consumption.", "Lawmakers are linking data center growth to potential impacts on the power grid.", "More detailed reporting could shape future energy planning and oversight."], "my_take": "This is a practical step. Before debating regulation, incentives, or infrastructure priorities, institutions need a clearer view of where power demand is rising and how concentrated that demand is. For the AI ecosystem, energy is no longer a background variable; it is becoming part of the operating model."}, "news_20": {"title": "Into the Omniverse: NVIDIA GTC Showcases Virtual Worlds Powering the Physical AI Era", "source": "NVIDIA Blog", "date": "1774537", "intro": "At NVIDIA GTC, the company presented virtual worlds as a key layer for the next phase of physical AI. The focus was on how developers, 3D teams and enterprises can use OpenUSD and NVIDIA Omniverse to move robots, vehicles and factories beyond isolated pilots toward broader deployment.", "why_it_matters": "This matters because physical AI depends on testing, coordination and iteration in complex real-world settings. Virtual environments can make that process more practical, helping teams connect simulation, design and operations before scaling systems in the physical world.", "takeaways": ["NVIDIA framed GTC as a turning point where physical AI is moving from single use cases to wider operational scale.", "Omniverse and OpenUSD were positioned as important tools for developers, 3D practitioners and enterprises building these workflows.", "The broader message is that virtual worlds are becoming part of the operating stack behind real-world AI systems."], "my_take": "The practical signal here is not just about better simulation. It is about giving companies a shared environment to design, test and align complex physical systems before deployment. If that workflow becomes standard, it could make physical AI more manageable and easier to industrialize."}, "news_21": {"title": "A ‘pound of flesh’ from data centers: one senator’s answer to AI job losses", "source": "TechCrunch AI", "date": "1774526", "intro": "Growing concern over AI-related job losses is starting to shape the politics around data centers. According to TechCrunch, Sen. Mark Warner has suggested taxing data centers as a way to support workers affected by the shift.", "why_it_matters": "This matters because the AI debate is moving beyond innovation and into distribution: who benefits, who pays, and how workers are protected. If concerns over jobs keep growing, data center policy could become a practical pressure point for regulation and public funding.", "takeaways": ["AI job-loss fears are increasingly linked to public resistance against data centers.", "Sen. Mark Warner’s proposal frames data center taxation as a response to worker disruption.", "The conversation is shifting from AI capability to the economic consequences of adoption."], "my_take": "This is a useful signal of where policy may go next. As AI infrastructure expands, the discussion will not stay limited to technical progress; it will increasingly focus on transition costs, labor impact, and who is expected to absorb them."}, "news_22": {"title": "Mercor competitor Deccan AI raises $25M, sources experts from India", "source": "TechCrunch AI", "date": "1774485", "intro": "Deccan AI has raised $25 million as it builds an AI training business around a workforce concentrated in India. The company’s approach appears aimed at improving quality control in a market that is expanding quickly but remains fragmented.", "why_it_matters": "AI training depends heavily on reliable human input, and quality is becoming a differentiator as demand grows. A more centralized expert workforce can help reduce inconsistency, improve oversight, and make delivery more dependable for customers.", "takeaways": ["Deccan AI raised $25 million to expand its position in AI training.", "The company is sourcing experts from India rather than relying on a more distributed model.", "Its core bet is that concentrated workforce management leads to better quality in a fragmented market."], "my_take": "This is a practical move, not a flashy one. In AI training, operational discipline often matters more than broad marketplace scale, and Deccan AI’s focus on workforce concentration suggests it sees quality control as the real lever for long-term advantage."}, "news_23": {"title": "The AI skills gap is here, says AI company, and power users are pulling ahead", "source": "TechCrunch AI", "date": "1774475", "intro": "Anthropic says the AI skills gap is starting to take shape. Its early findings suggest AI is not broadly replacing jobs today, but people who already know how to use these tools well are pulling ahead of less experienced workers.", "why_it_matters": "In practice, this shifts the conversation from immediate job loss to uneven productivity and opportunity. If AI benefits concentrate among power users first, companies may see widening performance gaps inside teams before they see full automation.", "takeaways": ["Anthropic’s view is that AI is not yet causing broad job replacement.", "Early evidence points to experienced AI users gaining a clearer edge.", "The main near-term risk may be a wider divide in skills, productivity, and access."], "my_take": "This is a more useful framing than the usual AI hype cycle. The important signal is not mass displacement today, but who is learning fastest and turning AI into practical leverage. For leaders, that makes training, adoption support, and workflow design more urgent than headline-driven fears."}, "news_24": {"title": "The Future of AI Is Open and Proprietary", "source": "NVIDIA Blog", "date": "1774465", "intro": "NVIDIA’s view is that AI will become core business infrastructure, supported by a broad mix of models: large and small, open and proprietary, general-purpose and specialized. The company frames this diversity as a practical requirement for a world where AI is embedded across applications, industries and countries.", "why_it_matters": "In practice, this points to a more flexible AI market. Companies are unlikely to rely on one model type alone; instead, they will combine open and proprietary systems based on cost, control, performance and fit for the task. That has implications for technology strategy, procurement and long-term platform choices.", "takeaways": ["AI is being positioned not as a niche tool, but as core infrastructure for business and software.", "The future AI stack will likely include multiple model types, not a single dominant approach.", "Open and proprietary models serve different needs, especially across varied applications and markets."], "my_take": "This is a useful reminder that the AI debate should move beyond open versus closed as a binary choice. For most organizations, the real question is where each approach creates the most value, control and operational reliability."}, "news_25": {"title": "Bernie Sanders and AOC propose a ban on data center construction", "source": "TechCrunch AI", "date": "1774458", "intro": "Senator Bernie Sanders and Representative Alexandria Ocasio-Cortez have introduced companion legislation that would stop new data center construction until Congress approves comprehensive AI regulation.", "why_it_matters": "Data centers are core infrastructure for AI. A pause on new builds would connect AI expansion directly to federal policymaking, with practical implications for investment, capacity planning, and the pace of deployment.", "takeaways": ["The proposal links new AI infrastructure development to future congressional regulation.", "It focuses specifically on halting construction of new data centers, not broader AI activity.", "If taken seriously, it could affect how companies plan expansion and timing around AI growth."], "my_take": "This is a clear sign that AI policy is moving beyond model behavior into the physical systems that support it. For leaders, the practical question is no longer just what AI can do, but whether the infrastructure behind it may become a regulatory issue as well."}, "news_26": {"title": "Anthropic wins injunction against Trump administration over Defense Department saga", "source": "TechCrunch AI", "date": "1774574", "intro": "Anthropic has secured an injunction against the Trump administration in a dispute tied to the U.S. Defense Department. A federal judge ordered the administration to rescind the recent restrictions it had placed on the AI company.", "why_it_matters": "This matters because government restrictions can directly affect how AI companies operate, especially in sensitive areas such as defense. The ruling shows that those actions can face legal limits and judicial review.", "takeaways": ["A federal judge ordered the Trump administration to withdraw recent restrictions on Anthropic.", "The case is connected to a broader dispute involving the Defense Department.", "The decision highlights how legal challenges can shape the relationship between AI companies and government authorities."], "my_take": "This is a useful reminder that AI policy is not shaped only by technology or procurement decisions, but also by the courts. For companies working near regulated or government environments, legal resilience is becoming as important as technical capability."}, "news_27": {"title": "Google unveils TurboQuant, a new AI memory compression algorithm — and yes, the internet is calling it ‘Pied Piper’", "source": "TechCrunch AI", "date": "1774471", "intro": "Google has introduced TurboQuant, a memory compression algorithm designed to reduce the amount of working memory AI systems need, with reported gains of up to 6x. The announcement quickly drew comparisons online to HBO’s Silicon Valley and its fictional “Pied Piper” compression breakthrough, but the technology is still in the experimental stage.", "why_it_matters": "If memory use can be reduced meaningfully, AI models could become cheaper and more practical to run, especially in environments where hardware limits are a constraint. The key point, however, is that this is still a lab result rather than a production-ready capability.", "takeaways": ["TurboQuant is presented as a new way to compress AI working memory more efficiently.", "Google says the approach could reduce memory requirements by up to 6x.", "Despite the attention, it remains an early research experiment, not a deployed product."], "my_take": "This is the kind of research worth watching because memory efficiency is a real bottleneck in AI deployment. But the practical question is not whether the idea sounds impressive; it is whether it holds up outside the lab and translates into reliable, usable performance in real systems."}, "news_28": {"title": "Creating with Sora Safely", "source": "OpenAI Blog", "date": "1774224", "intro": "OpenAI has outlined how it is approaching safety for Sora 2 and the Sora app, positioning protections as a core part of the product rather than an added layer. The focus is on managing the risks that come with a powerful video model and a new social creation platform.", "why_it_matters": "For teams exploring generative video, this is a practical signal that model capability alone is not enough. Adoption will depend on whether platforms can handle misuse, user trust, and content risks in a way that is built into the product experience.", "takeaways": ["OpenAI frames safety as foundational to both Sora 2 and the Sora app.", "The company is addressing risks tied to advanced video generation and social content creation.", "The announcement emphasizes concrete protections rather than abstract principles."], "my_take": "This is the right direction. In generative media, safety has to sit inside the system design, not in a policy PDF after launch. The real test, however, is how these protections work in everyday use and at scale."}};
+        </script>
 <!-- AUTO-NEWS-END -->
     </div>
+
+    <div class="modal" id="news-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="news-modal-close">✕ Close</button>
+            <div id="news-modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        window.newsModalData = window.newsModalData || {};
+
+        const newsModal = document.getElementById('news-modal');
+        const newsModalContent = document.getElementById('news-modal-content');
+        const newsModalClose = document.getElementById('news-modal-close');
+
+        document.addEventListener('click', function (e) {
+            const trigger = e.target.closest('.news-open, .auto-news-open');
+            if (!trigger) return;
+
+            const newsId = trigger.dataset.newsId;
+            const article = window.newsModalData[newsId];
+
+            if (!article) return;
+
+            const takeaways = Array.isArray(article.takeaways)
+                ? article.takeaways.map(item => `<li>${item}</li>`).join('')
+                : '';
+
+            // Find source URL from the card with this news id
+            const cardEl = document.querySelector(`.auto-news-card[data-news-id="${newsId}"]`);
+            const srcAnchor = cardEl ? cardEl.querySelector('.post-source-link') : null;
+            const srcHref = srcAnchor ? srcAnchor.href : (article.url || '');
+
+            newsModalContent.innerHTML = `
+                <h2>${article.title || ''}</h2>
+                <div class="modal-meta">
+                    <span><i class="fas fa-newspaper"></i> ${article.source || 'AI News'}</span>
+                    <span><i class="fas fa-calendar-alt"></i> ${article.date || ''}</span>
+                </div>
+
+                <h3>Introduction</h3>
+                <p>${article.intro || ''}</p>
+
+                <h3>Why it matters</h3>
+                <p>${article.why_it_matters || ''}</p>
+
+                <h3>Key takeaways</h3>
+                <ul>${takeaways}</ul>
+
+                <h3>My take</h3>
+                <p>${article.my_take || ''}</p>
+                ${srcHref ? `<a class="modal-source-link" href="${srcHref}" target="_blank" rel="noopener noreferrer">Read original source ↗</a>` : ''}
+            `;
+
+            newsModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        newsModalClose.addEventListener('click', closeNewsModal);
+        newsModal.addEventListener('click', function (e) {
+            if (e.target === newsModal) closeNewsModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeNewsModal();
+        });
+
+        function closeNewsModal() {
+            newsModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ── Pagination ────────────────────────────────────────────────
+        (function () {
+            const ITEMS_PER_PAGE = 9;
+            const grid = document.querySelector('.post-grid');
+            const paginationEl = document.getElementById('news-pagination');
+            const cards = Array.from(grid.querySelectorAll('.post-card'));
+            let currentPage = 1;
+            const totalPages = Math.ceil(cards.length / ITEMS_PER_PAGE);
+
+            function showPage(page) {
+                currentPage = page;
+                const start = (page - 1) * ITEMS_PER_PAGE;
+                const end = start + ITEMS_PER_PAGE;
+                cards.forEach(function (card, i) {
+                    card.style.display = (i >= start && i < end) ? '' : 'none';
+                });
+                renderPagination();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function renderPagination() {
+                paginationEl.innerHTML = '';
+                for (var p = 1; p <= totalPages; p++) {
+                    var btn = document.createElement('button');
+                    btn.textContent = p;
+                    if (p === currentPage) btn.classList.add('active');
+                    (function (pageNum) {
+                        btn.addEventListener('click', function () { showPage(pageNum); });
+                    })(p);
+                    paginationEl.appendChild(btn);
+                }
+            }
+
+            showPage(1);
+        })();
+    </script>
 
     <footer id="contact">
         <div class="footer-inner">
             <div class="footer-brand">
                 <h2>NR</h2>
-                <p class="tagline">AI-Data Expert Consultant</p>
+                <p class="tagline">Machine Learning &amp; Data Science</p>
                 <div class="footer-info-row">
                     <i class="fas fa-envelope"></i>
                     <a href="mailto:rapacchianinicola@gmail.com">rapacchianinicola@gmail.com</a>
                 </div>
                 <div class="footer-info-row">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>1 Draycot Road E11 2NU, London, UK</span>
+                    <span>London, UK</span>
                 </div>
                 <div class="social-pills">
-                    <a href="https://github.com/Nikrapa" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://github.com/Nikrapa" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
                 </div>
             </div>
+
             <div class="footer-form-wrap">
                 <h3>Get in Touch</h3>
                 <p class="form-sub">Drop me a message and I'll get back to you.</p>
@@ -477,6 +1431,7 @@
                 </form>
             </div>
         </div>
+
         <div class="footer-bottom">
             <span>&copy; 2026 Nicola Rapacchiani. All rights reserved.</span>
             <span>Built with passion in London 🇬🇧</span>
@@ -484,4 +1439,5 @@
     </footer>
 
 </body>
+
 </html>
